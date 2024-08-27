@@ -1,5 +1,5 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     import { geoPath, geoMercator } from "d3-geo";
     import * as topojson from "topojson-client";
     import Tooltip from "@components/Tooltip.svelte";
@@ -18,6 +18,8 @@
     let buildings = [];
     let points = [];
 
+    let resizeTimeout;
+
     onMount(() => {
         fetch("boundary.geojson")
             .then((response) => response.json())
@@ -28,12 +30,19 @@
 
         fetch("streets.geojson")
             .then((response) => response.json())
+            // .then((gazaData) => {
+            //     buildings = topojson.feature(
+            //         gazaData,
+            //         gazaData.objects.streets,
+            //     ).geometries;
+            //     updateMap();
+            // });
             .then((gazaData) => {
                 gaza = gazaData.features;
                 updateMap();
             });
 
-        fetch("buildings.json")
+        fetch("buildings1.json")
             .then((response) => response.json())
             .then((buildingsData) => {
                 buildings = topojson.feature(
@@ -54,12 +63,25 @@
                 date: d["Date of incident"],
             };
         });
+
+        window.addEventListener("resize", handleResize);
+    });
+
+    function handleResize() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateMap();
+        }, 150); // Adjust the delay time as necessary
+    }
+
+    onDestroy(() => {
+        window.removeEventListener("resize", handleResize);
     });
 
     function updateMap() {
-        if (container && gaza.length > 0) {
-            width = container.clientWidth;
+        width = container.clientWidth;
 
+        if (gaza.length > 0) {
             projection = geoMercator()
                 .rotate([-48, 48])
                 .scale(1)
@@ -102,47 +124,49 @@
     }
 </script>
 
-<article>
-    <div bind:this={container} style="overflow: auto;">
-        {#if gaza.length > 0}
-            <svg width={svgWidth} height={svgHeight}>
-                {#if boundary.length > 0}
-                    <g class="boundary">
-                        {#each boundary as feature, i}
-                            <path d={path(feature)} class="boundary" />
-                        {/each}
-                    </g>
-                {/if}
-
-                {#if buildings.length > 0}
-                    <g class="buildings">
-                        {#each buildings as feature, i}
-                            <path d={path(feature)} class="building" />
-                        {/each}
-                    </g>
-                {/if}
-
-                <g class="streets">
-                    {#each gaza as feature, i}
-                        <path d={path(feature)} class="street" />
+<article bind:this={container}>
+    {#if gaza.length > 0}
+        <svg width={svgWidth} height={svgHeight}>
+            {#if boundary.length > 0}
+                <g class="boundary">
+                    {#each boundary as feature, i}
+                        <path d={path(feature)} class="boundary" />
                     {/each}
                 </g>
+            {/if}
 
-                <g class="points">
-                    {#each points as point, i}
-                        {#if point.cx && point.cy}
-                            <Tooltip {point} />
-                        {/if}
+            {#if buildings.length > 0}
+                <g class="buildings">
+                    {#each buildings as feature, i}
+                        <path d={path(feature)} class="building" />
                     {/each}
                 </g>
-            </svg>
-        {/if}
-    </div>
+            {/if}
+
+            <g class="streets">
+                {#each gaza as feature, i}
+                    <path d={path(feature)} class="street" />
+                {/each}
+            </g>
+
+            <g class="points">
+                {#each points as point, i}
+                    {#if point.cx && point.cy}
+                        <Tooltip {point} />
+                    {/if}
+                {/each}
+            </g>
+        </svg>
+    {/if}
 
     <DetailPanel />
 </article>
 
 <style>
+    article {
+        width: 100%;
+    }
+
     .boundary {
         stroke-width: 2px;
         fill: none;
