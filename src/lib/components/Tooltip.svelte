@@ -71,14 +71,14 @@
         width={boxWidth}
         height={boxHeight}
     >
-        <div xmlns="http://www.w3.org/1999/xhtml">
+        <div>
             <!-- <img
                 src="gifs/{point['Airwars ref code']}.gif"
                 alt={point.date}
                 onerror="this.onerror=null;this.src='gifs/test.gif';"
             /> -->
 
-            <video autoPlay loop muted playsInline>
+            <video autoplay loop muted playsinline>
                 <track kind="captions" />
                 <source
                     src="videos/{point['Airwars ref code']}.mp4"
