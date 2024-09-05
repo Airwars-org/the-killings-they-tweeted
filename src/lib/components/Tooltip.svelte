@@ -166,7 +166,8 @@
         /* stroke-width: 2; */
     }
 
-    foreignObject {
+    foreignObject,
+    svg {
         pointer-events: auto;
         cursor: pointer;
     }
