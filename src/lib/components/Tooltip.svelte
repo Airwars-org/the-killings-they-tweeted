@@ -10,23 +10,31 @@
     let offsetX = "";
     let lineMargin;
 
-    $: boxSize =
-        w <= 768
-            ? { width: w / 6, height: w / 9 }
-            : { width: 195, height: 122 };
-
-    $: offsetX =
-        point.direction === "left"
-            ? -(boxSize.width * 2) - 10
-            : boxSize.width + 10;
-
-    $: lineMargin = ["left-1", "left-2"].includes(point.direction) ? -10 : 10;
-
     $: {
-        if (point.direction === "right-1") offsetX = boxSize.height * 1.5;
-        else if (point.direction === "right-2") offsetX = boxSize.height * 2;
-        else if (point.direction === "left-1") offsetX = -boxSize.height * 2;
-        else if (point.direction === "left-2") offsetX = -boxSize.height * 2.5;
+        if (w <= 768) {
+            boxWidth = w / 6;
+            boxHeight = w / 9;
+        } else {
+            boxWidth = 195;
+            boxHeight = 122;
+        }
+
+        offsetX =
+            point.direction === "left" ? -(boxWidth * 2) - 10 : boxWidth + 10;
+        lineMargin =
+            point.direction === "left-1" || point.direction === "left-2"
+                ? -10
+                : 10;
+
+        if (point.direction === "right-1") {
+            offsetX = boxHeight * 1.5;
+        } else if (point.direction === "right-2") {
+            offsetX = boxHeight * 2;
+        } else if (point.direction === "left-1") {
+            offsetX = -boxHeight * 2;
+        } else if (point.direction === "left-2") {
+            offsetX = -boxHeight * 2.5;
+        }
     }
 
     $: isSelected = $selected?.cx === point.cx && $selected?.cy === point.cy;
