@@ -1,5 +1,4 @@
 <script>
-    import { onMount, onDestroy } from "svelte";
     import { geoPath, geoMercator } from "d3-geo";
     import * as topojson from "topojson-client";
     import Tooltip from "@components/Tooltip.svelte";
@@ -8,7 +7,7 @@
     export let data;
 
     let container;
-    let width = 0;
+    let w;
     let svgWidth = 0;
     let svgHeight = 0;
     let projection;
@@ -18,28 +17,17 @@
     let buildings = [];
     let points = [];
 
-    let resizeTimeout;
-
-    onMount(() => {
+    $: if (gaza.length === 0) {
         fetch("boundary.geojson")
             .then((response) => response.json())
             .then((boundaryData) => {
                 boundary = boundaryData.features;
-                updateMap();
             });
 
         fetch("streets.geojson")
             .then((response) => response.json())
-            // .then((gazaData) => {
-            //     buildings = topojson.feature(
-            //         gazaData,
-            //         gazaData.objects.streets,
-            //     ).geometries;
-            //     updateMap();
-            // });
             .then((gazaData) => {
                 gaza = gazaData.features;
-                updateMap();
             });
 
         fetch("buildings1.json")
@@ -49,82 +37,69 @@
                     buildingsData,
                     buildingsData.objects.test1,
                 ).features;
-                updateMap();
             });
+    }
 
-        points = data.map((d) => {
-            return {
-                ...d,
-                direction: d["direction"]
-                    ? d["direction"]
-                    : Math.random() > 0.5
-                      ? "left"
-                      : "right",
-                date: d["Date of incident"],
-            };
+    points = data.map((d) => {
+        return {
+            ...d,
+            direction: d["direction"]
+                ? d["direction"]
+                : Math.random() > 0.5
+                  ? "left"
+                  : "right",
+            date: d["Date of incident"],
+        };
+    });
+
+    $: if (w && gaza.length > 0) {
+        updateMap(w);
+    }
+
+    function updateMap(width) {
+        projection = geoMercator().rotate([-48, 48]).scale(1).translate([0, 0]);
+
+        const pathGenerator = geoPath().projection(projection);
+        const bounds = pathGenerator.bounds({
+            type: "FeatureCollection",
+            features: gaza,
         });
 
-        window.addEventListener("resize", handleResize);
-    });
+        const dx = bounds[1][0] - bounds[0][0];
+        const dy = bounds[1][1] - bounds[0][1];
+        const x = (bounds[0][0] + bounds[1][0]) / 2;
+        const y = bounds[0][1] + bounds[1][1];
 
-    function handleResize() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            updateMap();
-        }, 150); // Adjust the delay time as necessary
+        const padding = [100, 10, 20];
+        const scale = (width - padding[0]) / dx;
+        const translate = [
+            width / 2 - scale * x,
+            (-scale - padding[1]) * bounds[0][1] + bounds[1][1],
+        ];
+
+        projection = projection.scale(scale).translate(translate);
+        path = geoPath().projection(projection);
+
+        svgWidth = width;
+        svgHeight = scale * dy + padding[2];
+
+        points = points.map((d) => {
+            const [cx, cy] = projection([d.lon, d.lat]);
+            return {
+                ...d,
+                cx,
+                cy,
+            };
+        });
     }
 
-    onDestroy(() => {
-        window.removeEventListener("resize", handleResize);
-    });
-
-    function updateMap() {
-        width = container.clientWidth;
-
-        if (gaza.length > 0) {
-            projection = geoMercator()
-                .rotate([-48, 48])
-                .scale(1)
-                .translate([0, 0]);
-
-            const pathGenerator = geoPath().projection(projection);
-            const bounds = pathGenerator.bounds({
-                type: "FeatureCollection",
-                features: gaza,
-            });
-
-            const dx = bounds[1][0] - bounds[0][0];
-            const dy = bounds[1][1] - bounds[0][1];
-            const x = (bounds[0][0] + bounds[1][0]) / 2;
-            const y = bounds[0][1] + bounds[1][1];
-
-            const padding = [100, 10, 20];
-            const scale = (width - padding[0]) / dx;
-            const translate = [
-                width / 2 - scale * x,
-                (-scale - padding[1]) * bounds[0][1] + bounds[1][1],
-            ];
-
-            projection = projection.scale(scale).translate(translate);
-
-            path = geoPath().projection(projection);
-
-            svgWidth = width;
-            svgHeight = scale * dy + padding[2];
-
-            points = points.map((d) => {
-                const [cx, cy] = projection([d.lon, d.lat]);
-                return {
-                    ...d,
-                    cx,
-                    cy,
-                };
-            });
-        }
-    }
+    $: pointsWithRefCode = points.filter((point) => point["Airwars ref code"]);
+    $: pointsWithoutRefCode = points.filter(
+        (point) => !point["Airwars ref code"],
+    );
 </script>
 
-<article bind:this={container}>
+<article bind:this={container} bind:clientWidth={w}>
     {#if gaza.length > 0}
         <svg width={svgWidth} height={svgHeight}>
             {#if boundary.length > 0}
@@ -150,9 +125,15 @@
             </g>
 
             <g class="points">
-                {#each points as point, i}
+                {#each pointsWithoutRefCode as point, i}
                     {#if point.cx && point.cy}
-                        <Tooltip {point} />
+                        <Tooltip {point} {w} />
+                    {/if}
+                {/each}
+
+                {#each pointsWithRefCode as point, i}
+                    {#if point.cx && point.cy}
+                        <Tooltip {point} {w} />
                     {/if}
                 {/each}
             </g>
@@ -173,19 +154,19 @@
     }
 
     .boundary {
-        fill: none;
-        stroke-width: 1px;
-        stroke: black;
+        fill: rgb(14, 14, 14);
+        stroke-width: 2px;
+        stroke: rgb(83, 83, 83); /*or 38 */
     }
 
     .buildings {
-        fill: rgb(162, 162, 162);
+        fill: rgb(83, 83, 83);
         stroke: none;
     }
 
     .streets {
         fill: none;
         stroke-width: 0.5px;
-        stroke: black;
+        stroke: rgb(83, 83, 83);
     }
 </style>

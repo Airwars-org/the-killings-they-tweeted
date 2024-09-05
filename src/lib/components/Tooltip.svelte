@@ -2,107 +2,159 @@
     import { selected } from "$lib/stores/selected";
 
     export let point;
+    export let w;
 
-    let boxWidth = 250;
-    let boxHeight = 200;
+    let boxWidth = 195;
+    let boxHeight = 122;
 
     let offsetX = "";
+    let lineMargin;
 
-    offsetX = point.direction === "left" ? -boxWidth * 2 - 10 : boxWidth + 10;
+    $: boxSize =
+        w <= 768
+            ? { width: w / 6, height: w / 9 }
+            : { width: 195, height: 122 };
 
-    if (point.direction === "right-1") {
-        offsetX = boxHeight * 1.5;
-    }
-    if (point.direction === "right-2") {
-        offsetX = boxHeight * 2;
-    }
+    $: offsetX =
+        point.direction === "left"
+            ? -(boxSize.width * 2) - 10
+            : boxSize.width + 10;
 
-    if (point.direction === "left-1") {
-        offsetX = -boxHeight * 1.5;
-    }
-    if (point.direction === "left-2") {
-        offsetX = -boxHeight * 2;
+    $: lineMargin = ["left-1", "left-2"].includes(point.direction) ? -10 : 10;
+
+    $: {
+        if (point.direction === "right-1") offsetX = boxSize.height * 1.5;
+        else if (point.direction === "right-2") offsetX = boxSize.height * 2;
+        else if (point.direction === "left-1") offsetX = -boxSize.height * 2;
+        else if (point.direction === "left-2") offsetX = -boxSize.height * 2.5;
     }
 
     $: isSelected = $selected?.cx === point.cx && $selected?.cy === point.cy;
 
-    function handleClick() {
+    function handleClick(e) {
         selected.set({
+            ...point,
             cx: point.cx,
             cy: point.cy,
-            date: point.date,
             lat: point.lat,
             lon: point.lon,
             id: point["Airwars ref code"],
         });
+
+        bringToFront(e);
+    }
+
+    $: markerTranslateX = point.cx - 10;
+    $: markerTranslateY = point.cy - 29;
+
+    let yOffset = 29;
+
+    function bringToFront(e) {
+        let currentElement = e.target.closest("g");
+        currentElement.parentNode.appendChild(currentElement);
     }
 </script>
 
 <g
     on:click={handleClick}
     id={point["Airwars ref code"]}
+    class:selected={isSelected}
     style="cursor: pointer; opacity: {isSelected || $selected === null
         ? 1
         : 0.2};"
 >
-    <line
-        class="line"
-        x1={point.cx}
-        y1={point.cy}
-        x2={point.cx + offsetX}
-        y2={point.cy}
-    />
+    {#if point["Airwars ref code"]}
+        <!-- {#if w > 768} -->
+        <line
+            class="line"
+            x1={point.cx - lineMargin}
+            y1={point.cy - yOffset}
+            x2={point.cx + offsetX}
+            y2={point.cy - yOffset}
+        />
 
-    <rect
-        class="box"
-        x={point.cx + offsetX}
-        y={point.cy - boxHeight / 2}
-        width={boxWidth}
-        height={boxHeight}
-        rx="10"
-        ry="10"
-    />
-
-    <circle class="geo" cx={point.cx} cy={point.cy} r="5" />
-
-    <foreignObject
-        x={point.cx + offsetX}
-        y={point.cy - boxHeight / 2}
-        width={boxWidth}
-        height={boxHeight}
-    >
-        <div>
-            <!-- <img
-                src="gifs/{point['Airwars ref code']}.gif"
-                alt={point.date}
-                onerror="this.onerror=null;this.src='gifs/test.gif';"
-            /> -->
-
-            <video autoplay loop muted playsinline>
-                <track kind="captions" />
-                <source
-                    src="videos/{point['Airwars ref code']}.mp4"
-                    type="video/mp4"
+        <rect
+            class="box"
+            x={point.cx + offsetX}
+            y={point.cy - yOffset - boxHeight / 2}
+            width={boxWidth}
+            height={boxHeight}
+            rx="10"
+            ry="10"
+        />
+        <!-- {/if} -->
+        {#if w > 768}
+            <svg
+                x={markerTranslateX}
+                y={markerTranslateY}
+                width="20"
+                height="29"
+                viewBox="0 0 20 29"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
+                    fill="white"
                 />
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </foreignObject>
+            </svg>
+        {:else}
+            <svg
+                x={markerTranslateX}
+                y={markerTranslateY}
+                width="10"
+                height="16"
+                viewBox="0 0 20 29"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
+                    fill="white"
+                />
+            </svg>
+        {/if}
+
+        <!-- {#if w > 768} -->
+        <foreignObject
+            x={point.cx + offsetX}
+            y={point.cy - yOffset - boxHeight / 2}
+            width={boxWidth}
+            height={boxHeight}
+        >
+            <div>
+                <video autoplay loop muted playsinline>
+                    <track kind="captions" />
+                    <source
+                        src="videos/{point['Airwars ref code']}.mp4"
+                        type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </foreignObject>
+        <!-- {/if} -->
+    {:else}
+        <ellipse class="secondary" cx={point.cx} cy={point.cy} rx="4" ry="4" />
+    {/if}
 </g>
 
 <style>
     .geo {
-        fill: black;
+        fill: white;
     }
 
-    .line,
-    .box {
+    .line {
         stroke-width: 2;
-        stroke: black;
+        stroke: white;
     }
 
     .box {
-        stroke-width: 4;
+        /* stroke-width: 2; */
     }
 
     rect {
@@ -127,5 +179,31 @@
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
+    }
+
+    .selected .line,
+    .selected .box {
+        fill: #ed3919;
+        stroke: #ed3919;
+    }
+
+    .selected path,
+    .selected ellipse {
+        fill: #ed3919;
+    }
+
+    .selected foreignObject {
+        mix-blend-mode: darken;
+    }
+    .selected,
+    .selected div {
+        fill: #ed3919;
+        background: #ed3919;
+    }
+
+    .secondary {
+        fill: white;
+        stroke: black;
+        stroke-width: 1;
     }
 </style>

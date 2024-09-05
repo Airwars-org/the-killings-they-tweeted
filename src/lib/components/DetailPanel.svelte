@@ -30,37 +30,128 @@
 
 {#if panelVisible}
     <div bind:this={panelRef} class="panel">
-        <video controls autoplay loop muted>
-            <track kind="captions" />
-            <source src="videos/{selectedPoint.id}.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
-        <div class="metadata">
-            {selectedPoint.id}
+        {#if selectedPoint.id}
+            <div class="video">
+                <video autoplay loop muted>
+                    <track kind="captions" />
+                    <source
+                        src="videos/{selectedPoint.id}.mp4"
+                        type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                </video>
+                {#if selectedPoint["Footage link"]}
+                    <a href={selectedPoint["Footage link"]} target="_blank">
+                        <svg
+                            width="38"
+                            height="38"
+                            viewBox="0 0 38 38"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <rect
+                                width="37.6627"
+                                height="37.6627"
+                                rx="18.8314"
+                                fill="#120908"
+                                fill-opacity="0.6"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M23.1892 8L29.6626 14.4734L24.5965 19.5396L20.0627 20.0627L19.5396 24.5966L14.4734 29.6627L8.00002 23.1893L13.0662 18.1232L17.5999 17.6L18.1231 13.0661L23.1892 8ZM24.8016 15.02L22.6438 12.8622L12.7179 22.7881L14.8757 24.9459L24.8016 15.02Z"
+                                fill="#ED3919"
+                            />
+                        </svg>
+                    </a>
+                {/if}
+            </div>
+        {/if}
+        <div>
+            <div class="icon">
+                <svg
+                    width="13"
+                    height="19"
+                    viewBox="0 0 13 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M13 0H0V10.1739L6.5 18.3696L13 10.1739V0ZM6.5 10.3329C8.52905 10.3329 10.1739 8.66231 10.1739 6.60156C10.1739 4.54081 8.52905 2.87024 6.5 2.87024C4.47095 2.87024 2.82609 4.54081 2.82609 6.60156C2.82609 8.66231 4.47095 10.3329 6.5 10.3329Z"
+                        fill="#ED3919"
+                    />
+                </svg>
+            </div>
+            <div class="metadata">
+                <!-- {#if selectedPoint.id}
+                {selectedPoint.id}
+            {/if} -->
 
-            <div>
-                <h1>N civilians killed</h1>
-            </div>
+                {#if selectedPoint.Title}
+                    <div>
+                        <h1>{selectedPoint.Title}</h1>
+                    </div>
+                {/if}
 
-            <div>
-                <h3>Date:</h3>
-                <p>{selectedPoint.date}</p>
-            </div>
-            <div>
-                <h3>Location:</h3>
-                <span>{selectedPoint.lat}</span>
-                <span>{selectedPoint.lon}</span>
-            </div>
-            <div>
-                <h3>More Metadata</h3>
-            </div>
-            <div>
-                <h3>More Metadata</h3>
-            </div>
-            <div>
-                <h3>More Metadata</h3>
+                {#if selectedPoint.Location || selectedPoint.lat || selectedPoint.lon}
+                    <div>
+                        <h3>Location</h3>
+                        {#if selectedPoint.Location}
+                            <h2>{selectedPoint.Location}</h2>
+                        {/if}
+                        {#if selectedPoint.lat}
+                            <span>{selectedPoint.lat}</span>
+                        {/if}
+                        {#if selectedPoint.lon}
+                            <span>{selectedPoint.lon}</span>
+                        {/if}
+                    </div>
+                {/if}
+
+                {#if selectedPoint["Incident date"]}
+                    <div>
+                        <h3>Incident Date</h3>
+                        <h2>{selectedPoint["Incident date"]}</h2>
+                    </div>
+                {/if}
+
+                {#if selectedPoint["Post date"]}
+                    <div>
+                        <h3>Post Date</h3>
+                        <h2>{selectedPoint["Post date"]}</h2>
+                    </div>
+                {/if}
+
+                {#if selectedPoint["Civilians reported killed"]}
+                    <div>
+                        <h3>Civilians reported killed</h3>
+                        <h2>{selectedPoint["Civilians reported killed"]}</h2>
+                    </div>
+                {/if}
             </div>
         </div>
+        {#if selectedPoint["Civilians reported killed"]}
+            <button
+                ><a href={selectedPoint["Airwars link"]} target="_blank"
+                    >Full Incident report <svg
+                        width="24"
+                        height="15"
+                        viewBox="0 0 24 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M11.0001 9V15L13.7565 15L23.2728 7.5L13.7565 0H11.0001V6L0.727539 6V9L11.0001 9ZM11.0001 9H15.7275V6H11.0001L11.0001 9Z"
+                            fill="black"
+                        />
+                    </svg>
+                </a></button
+            >
+        {/if}
     </div>
 {/if}
 
@@ -69,22 +160,92 @@
         position: fixed;
         right: 10px;
         top: 10px;
-        width: 300px;
+        width: 320px;
         height: fit-content;
-        background-color: white;
+        color: #ed3919;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
         overflow-y: auto;
     }
 
     video {
         width: 100%;
         height: auto;
-        margin-bottom: 20px;
+        border-radius: 8px;
+        /* margin-bottom: 20px; */
+    }
+
+    .video {
+        position: relative;
+    }
+
+    .video svg {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    button {
+        width: 100%;
+        height: 62px;
+        margin-top: 8px;
+        font-size: 22px;
+        background-color: #ed3919;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: white;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
     }
 
     .metadata {
-        font-size: 14px;
-        padding: 20px;
+        font-size: 13px;
+    }
+
+    .metadata div {
+        border-bottom: 1px solid;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    .panel > div {
+        display: flex;
+        gap: 5px;
+        padding: 15px;
+        background-color: #120908;
+        border-radius: 8px;
+    }
+
+    .icon {
+        padding: 4px;
+    }
+
+    h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 19px;
+        font-weight: 400;
+    }
+
+    h3 {
+        font-size: 10px;
+        text-transform: uppercase;
+        margin: 5px 0;
+        padding: 0;
+        font-weight: 400;
+        opacity: 40%;
     }
 </style>
