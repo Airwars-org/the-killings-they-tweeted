@@ -67,9 +67,6 @@
     on:click={handleClick}
     id={point["Airwars ref code"]}
     class:selected={isSelected}
-    style="cursor: pointer; opacity: {isSelected || $selected === null
-        ? 1
-        : 0.2};"
 >
     {#if point["Airwars ref code"]}
         <!-- {#if w > 768} -->
@@ -135,19 +132,18 @@
             height={boxHeight}
         >
             <div>
-                <video autoplay loop muted playsinline>
+                <video autoplay loop muted>
                     <track kind="captions" />
                     <source
                         src="videos/{point['Airwars ref code']}.webm"
                         type="video/webm"
                     />
-                    <source
+                    <!-- <source
                         src="videos/{point['Airwars ref code']}.mp4"
                         type="video/mp4"
-                    />
+                    /> -->
                     Your browser does not support the video tag.
                 </video>
-                
             </div>
         </foreignObject>
         <!-- {/if} -->
@@ -171,7 +167,8 @@
     }
 
     foreignObject {
-        /* pointer-events: auto; */
+        pointer-events: auto;
+        cursor: pointer;
     }
 
     foreignObject div {
@@ -203,6 +200,7 @@
 
     .selected foreignObject {
         mix-blend-mode: darken;
+        cursor: pointer;
     }
 
     .selected div {
