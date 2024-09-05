@@ -185,8 +185,8 @@
 
     .video svg {
         position: absolute;
-        bottom: 20px;
-        right: 20px;
+        bottom: 8px;
+        right: 8px;
     }
 
     button {
@@ -219,7 +219,7 @@
         margin-bottom: 16px;
     }
 
-    .panel > div {
+    .panel > div:not(:first-of-type) {
         display: flex;
         gap: 5px;
         padding: 15px;

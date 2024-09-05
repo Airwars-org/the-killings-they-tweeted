@@ -167,7 +167,8 @@
     }
 
     foreignObject,
-    svg {
+    svg,
+    ellipse {
         pointer-events: auto;
         cursor: pointer;
     }
