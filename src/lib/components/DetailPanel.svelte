@@ -35,11 +35,16 @@
                 <video autoplay loop muted>
                     <track kind="captions" />
                     <source
-                        src="videos/{selectedPoint.id}.mp4"
+                        src="videos/{selectedPoint['Airwars ref code']}.webm"
+                        type="video/webm"
+                    />
+                    <source
+                        src="videos/{selectedPoint['Airwars ref code']}.mp4"
                         type="video/mp4"
                     />
                     Your browser does not support the video tag.
                 </video>
+
                 {#if selectedPoint["Footage link"]}
                     <a href={selectedPoint["Footage link"]} target="_blank">
                         <svg

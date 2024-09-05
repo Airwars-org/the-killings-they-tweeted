@@ -3,6 +3,7 @@
     import * as topojson from "topojson-client";
     import Tooltip from "@components/Tooltip.svelte";
     import DetailPanel from "@components/DetailPanel.svelte";
+import { quadtree } from "d3-quadtree";
 
     export let data;
 

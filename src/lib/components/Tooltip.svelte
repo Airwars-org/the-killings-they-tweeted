@@ -138,11 +138,16 @@
                 <video autoplay loop muted playsinline>
                     <track kind="captions" />
                     <source
+                        src="videos/{point['Airwars ref code']}.webm"
+                        type="video/webm"
+                    />
+                    <source
                         src="videos/{point['Airwars ref code']}.mp4"
                         type="video/mp4"
                     />
                     Your browser does not support the video tag.
                 </video>
+                
             </div>
         </foreignObject>
         <!-- {/if} -->
@@ -165,16 +170,12 @@
         /* stroke-width: 2; */
     }
 
-    rect {
-        pointer-events: none;
-    }
-
     foreignObject {
-        pointer-events: auto;
+        /* pointer-events: auto; */
     }
 
     foreignObject div {
-        pointer-events: none;
+        /* pointer-events: none; */
         width: 100%;
         height: 100%;
         border-radius: 10px;
@@ -203,6 +204,11 @@
     .selected foreignObject {
         mix-blend-mode: darken;
     }
+
+    .selected div {
+        mix-blend-mode: darken;
+    }
+
     .selected,
     .selected div {
         fill: #ed3919;
