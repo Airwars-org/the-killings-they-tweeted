@@ -59,7 +59,6 @@
                                 height="37.6627"
                                 rx="18.8314"
                                 fill="#120908"
-                                fill-opacity="0.6"
                             />
                             <path
                                 fill-rule="evenodd"

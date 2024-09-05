@@ -157,17 +157,17 @@ import { quadtree } from "d3-quadtree";
     .boundary {
         fill: rgb(14, 14, 14);
         stroke-width: 2px;
-        stroke: rgb(83, 83, 83); /*or 38 */
+        stroke: rgb(40,40,40); /*or 38 */
     }
 
     .buildings {
-        fill: rgb(83, 83, 83);
+        fill: rgb(40,40,40);
         stroke: none;
     }
 
     .streets {
         fill: none;
         stroke-width: 0.5px;
-        stroke: rgb(83, 83, 83);
+        stroke: rgb(40,40,40);
     }
 </style>

@@ -14,17 +14,21 @@
         if (w <= 768) {
             boxWidth = w / 6;
             boxHeight = w / 9;
+            lineMargin =
+                point.direction === "left-1" || point.direction === "left-2"
+                    ? -0.2
+                    : 10;
         } else {
             boxWidth = 195;
             boxHeight = 122;
+            lineMargin =
+                point.direction === "left-1" || point.direction === "left-2"
+                    ? -10
+                    : 10;
         }
 
         offsetX =
             point.direction === "left" ? -(boxWidth * 2) - 10 : boxWidth + 10;
-        lineMargin =
-            point.direction === "left-1" || point.direction === "left-2"
-                ? -10
-                : 10;
 
         if (point.direction === "right-1") {
             offsetX = boxHeight * 1.5;
