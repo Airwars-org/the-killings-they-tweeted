@@ -47,6 +47,7 @@
         font-family: "Atlas Grotesk", sans-serif;
         font-size: 19px;
         position: relative;
+        --primary-color: #FC540D;
     }
 
     p {

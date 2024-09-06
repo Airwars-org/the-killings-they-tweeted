@@ -46,7 +46,7 @@
                 </video>
 
                 {#if selectedPoint["Footage link"]}
-                    <a href={selectedPoint["Footage link"]} target="_blank">
+                    <a class="footage-link" href={selectedPoint["Footage link"]} target="_blank">
                         <svg
                             width="38"
                             height="38"
@@ -64,7 +64,6 @@
                                 fill-rule="evenodd"
                                 clip-rule="evenodd"
                                 d="M23.1892 8L29.6626 14.4734L24.5965 19.5396L20.0627 20.0627L19.5396 24.5966L14.4734 29.6627L8.00002 23.1893L13.0662 18.1232L17.5999 17.6L18.1231 13.0661L23.1892 8ZM24.8016 15.02L22.6438 12.8622L12.7179 22.7881L14.8757 24.9459L24.8016 15.02Z"
-                                fill="#ED3919"
                             />
                         </svg>
                     </a>
@@ -84,7 +83,6 @@
                         fill-rule="evenodd"
                         clip-rule="evenodd"
                         d="M13 0H0V10.1739L6.5 18.3696L13 10.1739V0ZM6.5 10.3329C8.52905 10.3329 10.1739 8.66231 10.1739 6.60156C10.1739 4.54081 8.52905 2.87024 6.5 2.87024C4.47095 2.87024 2.82609 4.54081 2.82609 6.60156C2.82609 8.66231 4.47095 10.3329 6.5 10.3329Z"
-                        fill="#ED3919"
                     />
                 </svg>
             </div>
@@ -166,7 +164,7 @@
         top: 10px;
         width: 320px;
         height: fit-content;
-        color: #ed3919;
+        color: var(--primary-color);
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
         overflow-y: auto;
     }
@@ -188,12 +186,16 @@
         right: 8px;
     }
 
+    .footage-link svg path {
+        fill: var(--primary-color);
+    }
+
     button {
         width: 100%;
         height: 62px;
         margin-top: 8px;
         font-size: 22px;
-        background-color: #ed3919;
+        background-color: var(--primary-color);
         border: none;
         border-radius: 8px;
         cursor: pointer;
@@ -228,6 +230,10 @@
 
     .icon {
         padding: 4px;
+    }
+
+    .icon svg path {
+        fill: var(--primary-color);
     }
 
     h1 {

@@ -198,8 +198,8 @@
 
     .selected .line,
     .selected .box {
-        fill: #ed3919;
-        stroke: #ed3919;
+        fill: var(--primary-color);
+        stroke: var(--primary-color);
     }
 
     .selected .box {
@@ -208,7 +208,7 @@
 
     .selected path,
     .selected ellipse {
-        fill: #ed3919;
+        fill: var(--primary-color);
     }
 
     .selected foreignObject {
@@ -227,7 +227,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: #ed3919;
+        background: var(--primary-color);
         mix-blend-mode: multiply;
         border-radius: inherit;
     }
@@ -243,8 +243,8 @@
 
     .selected,
     .selected div {
-        fill: #ed3919;
-        background: #ed3919;
+        fill: var(--primary-color);
+        background: var(--primary-color);
     }
 
     .secondary {
