@@ -26,7 +26,8 @@
     });
 </script>
 
-<svelte:window on:scroll={handleScroll} />
+<!-- <svelte:window on:scroll={handleScroll} /> -->
+<svelte:window />
 
 {#if data.length === 0}
     <p>Loading...</p>
