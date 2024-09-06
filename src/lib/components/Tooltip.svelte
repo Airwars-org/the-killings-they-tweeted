@@ -191,12 +191,19 @@
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
+        position: relative;
+        filter: grayscale();
     }
+
 
     .selected .line,
     .selected .box {
         fill: #ed3919;
         stroke: #ed3919;
+    }
+
+    .selected .box {
+        stroke-width: 2;
     }
 
     .selected path,
@@ -205,13 +212,34 @@
     }
 
     .selected foreignObject {
-        mix-blend-mode: darken;
+        /* mix-blend-mode: darken; */
         cursor: pointer;
     }
 
     .selected div {
-        mix-blend-mode: darken;
+        position: relative;
+        /* mix-blend-mode: darken; */
     }
+
+
+    .selected div:after {
+        z-index: 2;
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #ed3919;
+        mix-blend-mode: multiply;
+        border-radius: inherit;
+    }
+    /* .selected div:before {
+        z-index: 1;
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgb(255, 255, 255);
+        mix-blend-mode: color;
+        border-radius: inherit;
+    } */
 
     .selected,
     .selected div {
