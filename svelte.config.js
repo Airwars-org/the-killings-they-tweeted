@@ -10,6 +10,9 @@ const config = {
 			fallback: null,     // Set this if you want a single-page app fallback (e.g., 'index.html')
 			precompress: false  // Precompresses the output (e.g., gzip)
 		}),
+		// paths: {
+		// 	base: '/map'
+		// },
 		alias: {
 			'@components': 'src/lib/components',
 			'@stores': 'src/lib/stores',
