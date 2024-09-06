@@ -168,24 +168,19 @@
     }
 
     .boundary {
-        stroke-width: 2px;
-        fill: none;
-    }
-
-    .boundary {
-        fill: none;
+        fill: rgb(20, 20, 20);
         stroke-width: 1px;
         stroke: black;
     }
 
     .buildings {
-        fill: rgb(162, 162, 162);
+        fill: rgb(38, 38, 38);
         stroke: none;
     }
 
     .streets {
         fill: none;
         stroke-width: 0.5px;
-        stroke: black;
+        stroke: rgb(34, 34, 34);
     }
 </style>

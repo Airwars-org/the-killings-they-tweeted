@@ -38,6 +38,8 @@
     }
 </script>
 
+
+<p>hello</p>
 <g
     on:click={handleClick}
     id={point["Airwars ref code"]}
@@ -45,15 +47,15 @@
         ? 1
         : 0.2};"
 >
-    <line
+    <!-- <line
         class="line"
         x1={point.cx}
         y1={point.cy}
         x2={point.cx + offsetX}
         y2={point.cy}
-    />
+    /> -->
 
-    <rect
+    <!-- <rect
         class="box"
         x={point.cx + offsetX}
         y={point.cy - boxHeight / 2}
@@ -61,38 +63,38 @@
         height={boxHeight}
         rx="10"
         ry="10"
-    />
+    /> -->
 
-    <circle class="geo" cx={point.cx} cy={point.cy} r="5" />
+    <circle class="geo" cx={point.cx} cy={point.cy} r="1" />
 
-    <foreignObject
+    <!-- <foreignObject
         x={point.cx + offsetX}
         y={point.cy - boxHeight / 2}
         width={boxWidth}
         height={boxHeight}
     >
         <div>
-            <!-- <img
+            <img
                 src="gifs/{point['Airwars ref code']}.gif"
                 alt={point.date}
                 onerror="this.onerror=null;this.src='gifs/test.gif';"
-            /> -->
+            />
 
             <video autoplay loop muted playsinline>
                 <track kind="captions" />
                 <source
-                    src="videos/{point['Airwars ref code']}.mp4"
+                    src="videos/ISPT0063.mp4"
                     type="video/mp4"
                 />
                 Your browser does not support the video tag.
             </video>
         </div>
-    </foreignObject>
+    </foreignObject> -->
 </g>
 
 <style>
     .geo {
-        fill: black;
+        fill: yellow;
     }
 
     .line,

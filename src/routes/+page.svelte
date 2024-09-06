@@ -7,7 +7,7 @@
     let width, height;
 
     onMount(async () => {
-        data = await csv("data.csv");
+        data = await csv("matches-data.csv");
     });
 </script>
 
@@ -32,6 +32,6 @@
     }
 
     article {
-        background-color: #d5d5d5;
+        background-color: #000000;
     }
 </style>
