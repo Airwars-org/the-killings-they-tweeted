@@ -48,6 +48,7 @@
 <style>
     .legend {
         padding: 10px;
+        /* width: calc(100% - 20px); */
     }
 
     p {

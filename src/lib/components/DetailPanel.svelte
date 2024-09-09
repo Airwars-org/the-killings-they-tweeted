@@ -274,4 +274,25 @@
         font-weight: 400;
         opacity: 40%;
     }
+
+    @media (max-width: 800px) {
+        .panel {
+            right: 10px;
+            top: 10px;
+            width: 70vw;
+        }
+
+        button {
+            font-size: 16px;
+        }
+        .metadata {
+            font-size: 8px;
+        }
+        h1 {
+            font-size: 18px;
+        }
+        h2 {
+            font-size: 14px;
+        }
+    }
 </style>
