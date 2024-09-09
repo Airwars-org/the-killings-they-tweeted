@@ -44,33 +44,10 @@
                     />
                     Your browser does not support the video tag.
                 </video>
-
-                {#if selectedPoint["Footage link"]}
-                    <a class="footage-link" href={selectedPoint["Footage link"]} target="_blank">
-                        <svg
-                            width="38"
-                            height="38"
-                            viewBox="0 0 38 38"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <rect
-                                width="37.6627"
-                                height="37.6627"
-                                rx="18.8314"
-                                fill="#120908"
-                            />
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M23.1892 8L29.6626 14.4734L24.5965 19.5396L20.0627 20.0627L19.5396 24.5966L14.4734 29.6627L8.00002 23.1893L13.0662 18.1232L17.5999 17.6L18.1231 13.0661L23.1892 8ZM24.8016 15.02L22.6438 12.8622L12.7179 22.7881L14.8757 24.9459L24.8016 15.02Z"
-                            />
-                        </svg>
-                    </a>
-                {/if}
             </div>
         {/if}
         <div>
+            <!-- {selectedPoint['Airwars ref code']} -->
             <div class="icon">
                 <svg
                     width="13"
@@ -122,7 +99,39 @@
                 {#if selectedPoint["Post date"]}
                     <div>
                         <h3>Post Date</h3>
-                        <h2>{selectedPoint["Post date"]}</h2>
+
+                        <span class="ico">
+                            {#if selectedPoint["Footage link"]}
+                                <a
+                                    class="footage-link"
+                                    href={selectedPoint["Footage link"]}
+                                    target="_blank"
+                                >
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 38 38"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            width="37.6627"
+                                            height="37.6627"
+                                            rx="18.8314"
+                                            fill="#120908"
+                                        />
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M23.1892 8L29.6626 14.4734L24.5965 19.5396L20.0627 20.0627L19.5396 24.5966L14.4734 29.6627L8.00002 23.1893L13.0662 18.1232L17.5999 17.6L18.1231 13.0661L23.1892 8ZM24.8016 15.02L22.6438 12.8622L12.7179 22.7881L14.8757 24.9459L24.8016 15.02Z"
+                                        />
+                                    </svg>
+                                    <h2 style="display: inline;">
+                                        {selectedPoint["Post date"]}
+                                    </h2>
+                                </a>
+                            {/if}
+                        </span>
                     </div>
                 {/if}
 
@@ -184,6 +193,13 @@
         position: absolute;
         bottom: 8px;
         right: 8px;
+    }
+
+    .ico a {
+        color: var(--primary-color);
+        display: flex;
+        align-content: center;
+        align-items: center;
     }
 
     .footage-link svg path {
