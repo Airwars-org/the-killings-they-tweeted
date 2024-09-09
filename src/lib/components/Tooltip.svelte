@@ -30,10 +30,14 @@
         offsetX =
             point.direction === "left" ? -(boxWidth * 2) - 10 : boxWidth + 10;
 
-        if (point.direction === "right-1") {
+        if (point.direction === "right") {
+            offsetX = boxHeight;
+        } else if (point.direction === "right-1") {
             offsetX = boxHeight * 1.5;
         } else if (point.direction === "right-2") {
             offsetX = boxHeight * 2;
+        } else if (point.direction === "left") {
+            offsetX = -boxHeight;
         } else if (point.direction === "left-1") {
             offsetX = -boxHeight * 2;
         } else if (point.direction === "left-2") {
@@ -195,7 +199,6 @@
         filter: grayscale();
     }
 
-
     .selected .line,
     .selected .box {
         fill: var(--primary-color);
@@ -220,7 +223,6 @@
         position: relative;
         /* mix-blend-mode: darken; */
     }
-
 
     .selected div:after {
         z-index: 2;
