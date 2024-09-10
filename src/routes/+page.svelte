@@ -7,7 +7,7 @@
     let width, height;
 
     onMount(async () => {
-        data = await csv("matches-data.csv");
+        data = await csv("Matches_ Map Events - Sheet1.csv");
     });
 </script>
 
