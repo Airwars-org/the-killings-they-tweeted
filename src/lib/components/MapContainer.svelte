@@ -38,7 +38,6 @@
                 <DetailPanel />
             </div>
             <div class="mapContainer">
-
                 <Map {data} />
             </div>
         </section>
@@ -49,12 +48,10 @@
     .map {
         margin-top: 20px;
         position: relative;
-        /* height: 100vh; */
     }
-    
+
     .mapContainer {
         margin-top: -100vh;
-
     }
 
     .panel {
@@ -67,5 +64,16 @@
 
     p {
         margin: 10px;
+    }
+
+    @media (max-width: 800px) {
+        .panel {
+            pointer-events: none;
+            /* height: 50vh; */
+        }
+
+        :global(.panel a){
+            pointer-events: all;
+        }
     }
 </style>

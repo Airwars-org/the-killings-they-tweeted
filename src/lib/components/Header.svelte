@@ -61,8 +61,7 @@
     }
 
     h1 {
-        font-size: 6vw;
-        font-size: clamp(3rem, 6vw, 6rem);
+        font-size: clamp(2rem, 6vw, 6rem);
 
         font-weight: 400;
         margin: 0;
@@ -70,11 +69,11 @@
     }
 
     p {
-        font-size: 1.3rem;
+        font-size: clamp(1rem, 1vw, 1.3rem);
     }
 
     .tiny {
-        font-size: 1rem;
+        font-size: clamp(0.875rem, 1vw, 1rem);
         opacity: 0.7;
     }
 

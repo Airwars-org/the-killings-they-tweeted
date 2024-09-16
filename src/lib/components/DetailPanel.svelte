@@ -48,21 +48,23 @@
         {/if}
         <div>
             <!-- {selectedPoint['Airwars ref code']} -->
-            <div class="icon">
-                <svg
-                    width="13"
-                    height="19"
-                    viewBox="0 0 13 19"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M13 0H0V10.1739L6.5 18.3696L13 10.1739V0ZM6.5 10.3329C8.52905 10.3329 10.1739 8.66231 10.1739 6.60156C10.1739 4.54081 8.52905 2.87024 6.5 2.87024C4.47095 2.87024 2.82609 4.54081 2.82609 6.60156C2.82609 8.66231 4.47095 10.3329 6.5 10.3329Z"
-                    />
-                </svg>
-            </div>
+            {#if selectedPoint.id}
+                <div class="icon">
+                    <svg
+                        width="13"
+                        height="19"
+                        viewBox="0 0 13 19"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M13 0H0V10.1739L6.5 18.3696L13 10.1739V0ZM6.5 10.3329C8.52905 10.3329 10.1739 8.66231 10.1739 6.60156C10.1739 4.54081 8.52905 2.87024 6.5 2.87024C4.47095 2.87024 2.82609 4.54081 2.82609 6.60156C2.82609 8.66231 4.47095 10.3329 6.5 10.3329Z"
+                        />
+                    </svg>
+                </div>
+            {/if}
             <div class="metadata">
                 <!-- {#if selectedPoint.id}
                 {selectedPoint.id}
@@ -276,9 +278,8 @@
 
     @media (max-width: 800px) {
         .panel {
-            right: 10px;
             top: 10px;
-            width: 70vw;
+            /* width: 100vw; */
         }
 
         button {
