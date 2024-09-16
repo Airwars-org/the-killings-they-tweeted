@@ -1,5 +1,5 @@
 <div class="legend">
-    <p class="">
+    <p class="explore">
         <svg
             width="20"
             height="29"
@@ -32,13 +32,7 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <ellipse
-                cx="10"
-                cy="10"
-                rx="4"
-                ry="4"
-                fill="white"
-            />
+            <ellipse cx="10" cy="10" rx="4" ry="4" fill="white" />
         </svg>
 
         Geolocated civilian harm incidents
@@ -47,17 +41,19 @@
 
 <style>
     .legend {
-        padding: 10px;
+        width: 100%;
+
         /* width: calc(100% - 20px); */
     }
 
     p {
         flex: 100%;
-        padding: 0;
+        padding: 0 10px;
         margin: 5px 0;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: flex-end;
         gap: 10px;
     }
 </style>

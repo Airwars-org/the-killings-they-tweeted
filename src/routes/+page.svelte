@@ -1,44 +1,25 @@
 <script>
-    import Map from "@components/Map.svelte";
-    import Legend from "@components/Legend.svelte";
-    import { csv } from "d3";
-    import { selected } from "$lib/stores/selected";
-    import { onMount, tick } from "svelte";
+    import Video from "@components/Video.svelte";
+    import Header from "@components/Header.svelte";
 
-    let data = [];
-    let scrollY = 0;
-    let lastScrollY = 0;
-    let scrollThreshold = 20;
-
-    const handleScroll = async () => {
-        await tick();
-
-        scrollY = window.scrollY;
-
-        if (Math.abs(scrollY - lastScrollY) > scrollThreshold) {
-            selected.set(null);
-            lastScrollY = scrollY;
-        }
-    };
-
-    onMount(async () => {
-        data = await csv("data.csv");
-    });
+    import MapContainer from "@components/MapContainer.svelte";
 </script>
 
 <!-- <svelte:window on:scroll={handleScroll} /> -->
 <svelte:window />
 
-{#if data.length === 0}
-    <p>Loading...</p>
-{:else}
-    <Legend />
-    <article>
-        <Map {data} />
-    </article>
-{/if}
+<article>
+    <Video />
+    <Header />
+    <MapContainer />
+</article>
 
 <style>
+    :global(html) {
+        --primary-color: rgb(252, 84, 13);
+        /* background-color: var(--primary-color); */
+    }
+
     :global(body) {
         margin: 0;
         padding: 0;
@@ -47,11 +28,23 @@
         font-family: "Atlas Grotesk", sans-serif;
         font-size: 19px;
         position: relative;
-        --primary-color: #fc540d;
+
+        background-image: radial-gradient(
+            rgb(252, 84, 13, 0.2) 1px,
+            rgb(8, 8, 8, 0.5) 1px
+        );
+        background-size: 30px 30px;
     }
 
-    p {
-        margin: 10px;
+    :global(::selection) {
+        background-color: var(--primary-color);
+        color: black;
+    }
+
+    article {
+        max-width: 1920px;
+        display: block;
+        margin: 0 auto;
     }
 
     @font-face {

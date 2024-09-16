@@ -2,8 +2,7 @@
     import { geoPath, geoMercator } from "d3-geo";
     import * as topojson from "topojson-client";
     import Tooltip from "@components/Tooltip.svelte";
-    import DetailPanel from "@components/DetailPanel.svelte";
-import { quadtree } from "d3-quadtree";
+    // import { quadtree } from "d3-quadtree";
 
     export let data;
 
@@ -31,7 +30,13 @@ import { quadtree } from "d3-quadtree";
                 gaza = gazaData.features;
             });
 
-        fetch("buildings1.json")
+        // fetch("centroids.geojson")
+        //     .then((response) => response.json())
+        //     .then((buildingsData) => {
+        //         buildings = buildingsData.features;
+        //     });
+
+        fetch("buildings2.json")
             .then((response) => response.json())
             .then((buildingsData) => {
                 buildings = topojson.feature(
@@ -100,7 +105,7 @@ import { quadtree } from "d3-quadtree";
     );
 </script>
 
-<article bind:this={container} bind:clientWidth={w}>
+<article bind:this={container} bind:clientWidth={w} class="map">
     {#if gaza.length > 0}
         <svg width={svgWidth} height={svgHeight}>
             {#if boundary.length > 0}
@@ -111,7 +116,7 @@ import { quadtree } from "d3-quadtree";
                 </g>
             {/if}
 
-            {#if buildings.length > 0}
+            {#if w > 800 && buildings.length > 0}
                 <g class="buildings">
                     {#each buildings as feature, i}
                         <path d={path(feature)} class="building" />
@@ -140,8 +145,6 @@ import { quadtree } from "d3-quadtree";
             </g>
         </svg>
     {/if}
-
-    <DetailPanel />
 </article>
 
 <style>
@@ -157,17 +160,17 @@ import { quadtree } from "d3-quadtree";
     .boundary {
         fill: rgb(14, 14, 14);
         stroke-width: 2px;
-        stroke: rgb(40,40,40); /*or 38 */
+        stroke: rgb(40, 40, 40); /*or 38 */
     }
 
     .buildings {
-        fill: rgb(40,40,40);
+        fill: rgb(40, 40, 40);
         stroke: none;
     }
 
     .streets {
         fill: none;
-        stroke-width: 0.5px;
-        stroke: rgb(40,40,40);
+        stroke-width: 0.2px;
+        stroke: rgb(40, 40, 40);
     }
 </style>
