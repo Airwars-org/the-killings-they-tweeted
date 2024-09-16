@@ -1,15 +1,17 @@
-import adapter from '@sveltejs/adapter-static';
+// import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-auto';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		// Use the static adapter for building the project as a static site
-		adapter: adapter({
-			pages: 'build',     // Directory where the built pages will be output
-			assets: 'build',    // Directory where the built assets will be output
-			fallback: null,     // Set this if you want a single-page app fallback (e.g., 'index.html')
-			precompress: false  // Precompresses the output (e.g., gzip)
-		}),
+		adapter: adapter(
+			// {
+			// 	pages: 'build',
+			// 	assets: 'build',
+			// 	fallback: null,
+			// 	precompress: false
+			// }
+		),
 		// paths: {
 		// 	base: '/map'
 		// },
