@@ -168,9 +168,8 @@
 
 <style>
     .panel {
-        position: fixed;
-        right: 10px;
-        top: 10px;
+        /* position: fixed; */
+
         width: 320px;
         height: fit-content;
         color: var(--primary-color);
