@@ -34,9 +34,12 @@
     <section class="map">
         <Legend />
         <section class="map">
-            <Map {data} />
             <div class="panel">
                 <DetailPanel />
+            </div>
+            <div class="mapContainer">
+
+                <Map {data} />
             </div>
         </section>
     </section>
@@ -46,7 +49,20 @@
     .map {
         margin-top: 20px;
         position: relative;
+        /* height: 100vh; */
+    }
+    
+    .mapContainer {
+        margin-top: -100vh;
+
+    }
+
+    .panel {
+        position: sticky;
         height: 100vh;
+        z-index: 1;
+        top: 10px;
+        margin-left: calc(100vw - 320px - 10px);
     }
 
     p {
