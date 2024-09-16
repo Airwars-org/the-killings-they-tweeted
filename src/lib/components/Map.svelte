@@ -124,7 +124,9 @@
     }
 </script>
 
-<article bind:this={container}>
+<article bind:this={container} bind:clientWidth={w}>
+    <DetailPanel />
+
     {#if gaza.length > 0}
         <svg width={svgWidth} height={svgHeight}>
             {#if boundary.length > 0}
@@ -159,12 +161,12 @@
         </svg>
     {/if}
 
-    <DetailPanel />
 </article>
 
 <style>
     article {
         width: 100%;
+        margin-top: -100vh;
     }
 
     .boundary {

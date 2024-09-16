@@ -29,6 +29,7 @@
 </script>
 
 {#if panelVisible}
+<div class="panelContainer">
     <div bind:this={panelRef} class="panel">
         <video controls autoplay loop muted>
             <track kind="captions" />
@@ -62,16 +63,23 @@
             </div>
         </div>
     </div>
+</div>
+    
 {/if}
 
 <style>
-    .panel {
-        position: fixed;
+
+    .panelContainer {
+        position: sticky;
         right: 10px;
         top: 10px;
         width: 300px;
-        height: fit-content;
-        background-color: white;
+        height: 100vh;
+        
+    }
+    .panel {
+        width: 320px;
+        color: var(--primary-color);
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
         overflow-y: auto;
