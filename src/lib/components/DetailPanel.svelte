@@ -30,7 +30,32 @@
 
 {#if panelVisible}
     <div bind:this={panelRef} class="panel">
-        <div class="close" on:click={() => selected.set(null)}>X</div>
+        <div class="close" on:click={() => selected.set(null)}>
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M8.48528 12.6065L9.54594 13.6672L10.6066 14.7278L2.12132 23.2131L0 21.0918L8.48528 12.6065Z"
+                    fill="#FC540D"
+                />
+                <path
+                    d="M10.6066 8.48528L9.54596 9.54594L8.4853 10.6066L1.68061e-05 2.12132L2.12134 0L10.6066 8.48528Z"
+                    fill="#FC540D"
+                />
+                <path
+                    d="M23.2133 21.0918L22.1526 22.1525L21.092 23.2132L12.6067 14.7279L14.728 12.6066L23.2133 21.0918Z"
+                    fill="#FC540D"
+                />
+                <path
+                    d="M21.092 -4.98836e-05L22.1526 1.06061L23.2133 2.12127L14.728 10.6066L12.6067 8.48523L21.092 -4.98836e-05Z"
+                    fill="#FC540D"
+                />
+            </svg>
+        </div>
         {#if selectedPoint.id && selectedPoint["Airwars ref code"]}
             <div class="video">
                 <video autoplay loop muted>
@@ -300,7 +325,7 @@
             width: 100%;
             font-size: 8px;
         }
-        
+
         h1 {
             font-size: 18px;
         }

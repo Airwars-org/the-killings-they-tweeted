@@ -48,6 +48,8 @@
     .map {
         margin-top: 20px;
         position: relative;
+        background: rgb(8, 8, 8, 0.4);
+        box-shadow: 0px -16px 20px 3px rgb(8, 8, 8, 0.4);
     }
 
     .mapContainer {
@@ -70,10 +72,11 @@
         .panel {
             pointer-events: none;
             margin-left: 0;
+            top: 0px;
             /* height: 50vh; */
         }
 
-        :global(.panel> .panel){
+        :global(.panel > .panel) {
             pointer-events: all;
         }
     }

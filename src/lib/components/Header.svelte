@@ -51,7 +51,12 @@
         flex-wrap: wrap;
         gap: 10px;
         padding: 10px;
+        position: sticky;
+        top: 0;
+
     }
+
+   
     div {
         flex: 1;
     }
@@ -81,5 +86,12 @@
         align-content: center;
         align-items: center;
         gap: 10px;
+    }
+
+   
+    @media (max-width: 800px) {
+        section {
+            position: unset;
+        }
     }
 </style>
