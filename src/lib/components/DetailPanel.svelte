@@ -30,7 +30,8 @@
 
 {#if panelVisible}
     <div bind:this={panelRef} class="panel">
-        {#if selectedPoint.id}
+        <div class="close" on:click={() => selected.set(null)}>X</div>
+        {#if selectedPoint.id && selectedPoint["Airwars ref code"]}
             <div class="video">
                 <video autoplay loop muted>
                     <track kind="captions" />
@@ -170,8 +171,6 @@
 
 <style>
     .panel {
-        /* position: fixed; */
-
         width: 320px;
         height: fit-content;
         color: var(--primary-color);
@@ -183,7 +182,6 @@
         width: 100%;
         height: auto;
         border-radius: 8px;
-        /* margin-bottom: 20px; */
     }
 
     .video {
@@ -233,8 +231,8 @@
 
     .metadata div {
         border-bottom: 1px solid;
-        padding-bottom: 16px;
-        margin-bottom: 16px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
 
     .panel > div:not(:first-of-type) {
@@ -276,18 +274,33 @@
         opacity: 40%;
     }
 
+    .close {
+        display: none;
+    }
+
     @media (max-width: 800px) {
         .panel {
-            top: 10px;
-            /* width: 100vw; */
+            background-color: black;
+            padding: 10px;
+            width: calc(100vw - 20px);
+            height: 100vh;
+            overflow: scroll;
+        }
+
+        .close {
+            display: block;
+            width: 100%;
         }
 
         button {
             font-size: 16px;
         }
+
         .metadata {
+            width: 100%;
             font-size: 8px;
         }
+        
         h1 {
             font-size: 18px;
         }

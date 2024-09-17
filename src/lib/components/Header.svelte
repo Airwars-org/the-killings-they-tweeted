@@ -62,7 +62,6 @@
 
     h1 {
         font-size: clamp(2rem, 6vw, 6rem);
-
         font-weight: 400;
         margin: 0;
         padding: 0;

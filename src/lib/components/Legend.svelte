@@ -1,8 +1,8 @@
 <div class="legend">
     <p class="explore">
         <svg
-            width="20"
-            height="29"
+            width="1rem"
+            height="1rem"
             viewBox="0 0 20 29"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +26,8 @@
     </p>
     <p>
         <svg
-            width="20"
-            height="20"
+            width="1rem"
+            height="1rem"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +47,7 @@
     }
 
     p {
+        font-size: clamp(1rem, 1vw, 1.3rem);
         flex: 100%;
         padding: 0 10px;
         margin: 5px 0;

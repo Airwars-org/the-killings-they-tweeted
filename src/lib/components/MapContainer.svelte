@@ -69,10 +69,11 @@
     @media (max-width: 800px) {
         .panel {
             pointer-events: none;
+            margin-left: 0;
             /* height: 50vh; */
         }
 
-        :global(.panel a){
+        :global(.panel> .panel){
             pointer-events: all;
         }
     }
