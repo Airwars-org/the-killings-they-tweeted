@@ -48,8 +48,8 @@
     .map {
         margin-top: 20px;
         position: relative;
-        background: rgb(8, 8, 8, 0.4);
-        box-shadow: 0px -16px 20px 3px rgb(8, 8, 8, 0.4);
+        background: rgb(8, 8, 8, 0.5);
+        box-shadow: 0px -16px 20px 3px rgb(8, 8, 8, 0.5);
     }
 
     .mapContainer {
@@ -62,6 +62,11 @@
         z-index: 1;
         top: 10px;
         margin-left: calc(100vw - 320px - 10px);
+        pointer-events: none;
+    }
+
+    :global(.panel > .panel) {
+        pointer-events: all;
     }
 
     p {
@@ -70,14 +75,9 @@
 
     @media (max-width: 800px) {
         .panel {
-            pointer-events: none;
             margin-left: 0;
             top: 0px;
             /* height: 50vh; */
-        }
-
-        :global(.panel > .panel) {
-            pointer-events: all;
         }
     }
 </style>
