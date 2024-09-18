@@ -305,7 +305,7 @@
 
     @media (max-width: 800px) {
         .panel {
-            background-color: black;
+            background-color: #120908;
             padding: 10px;
             width: calc(100vw - 20px);
             height: 100vh;
