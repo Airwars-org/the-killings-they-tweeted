@@ -260,10 +260,10 @@
         margin-bottom: 10px;
     }
 
-    .panel > div:not(:first-of-type) {
+    .panel > div:not(:first-of-type):not(.video) {
         display: flex;
         gap: 5px;
-        padding: 15px;
+        padding: 10px;
         background-color: #120908;
         border-radius: 8px;
     }
