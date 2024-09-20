@@ -56,16 +56,16 @@
                 />
             </svg>
         </div>
-        {#if selectedPoint.id && selectedPoint["Airwars ref code"]}
+        {#if selectedPoint.id && selectedPoint["Airwars ref code"] || selectedPoint["Umatched ID"]}
             <div class="video">
                 <video autoplay loop muted>
                     <track kind="captions" />
                     <source
-                        src="videos/{selectedPoint['Airwars ref code']}.webm"
+                        src="videos/{selectedPoint['Airwars ref code'] || selectedPoint["Umatched ID"]}.webm"
                         type="video/webm"
                     />
                     <source
-                        src="videos/{selectedPoint['Airwars ref code']}.mp4"
+                        src="videos/{selectedPoint['Airwars ref code'] || selectedPoint["Umatched ID"]}.mp4"
                         type="video/mp4"
                     />
                     Your browser does not support the video tag.
