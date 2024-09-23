@@ -412,12 +412,20 @@
         margin-bottom: 10px;
     }
 
+    .metadata div:last-of-type {
+        border-bottom: unset;
+    }
+
     .panel > div:not(:first-of-type):not(.video) {
         display: flex;
         gap: 5px;
         padding: 10px;
         background-color: #120908;
         border-radius: 8px;
+    }
+
+    .panel > div:has(+ .related-point):not(.related-point) {
+        border: 1px solid var(--primary-color);
     }
 
     .icon {
