@@ -56,17 +56,19 @@
                 />
             </svg>
         </div>
-        {#if selectedPoint["Airwars ref code"] || selectedPoint["Unmatched ID"]}
+        {#if selectedPoint["Airwars ref code"] || selectedPoint["Group ID"] || selectedPoint["Unmatched ID"]}
             <div class="video">
                 <video autoplay loop muted>
                     <track kind="captions" />
                     <source
                         src="videos/{selectedPoint['Airwars ref code'] ||
+                            selectedPoint['Group ID'] ||
                             selectedPoint['Unmatched ID']}.webm"
                         type="video/webm"
                     />
                     <source
                         src="videos/{selectedPoint['Airwars ref code'] ||
+                            selectedPoint['Group ID'] ||
                             selectedPoint['Unmatched ID']}.mp4"
                         type="video/mp4"
                     />
