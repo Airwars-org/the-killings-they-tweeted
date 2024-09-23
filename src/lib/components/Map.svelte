@@ -133,13 +133,13 @@
             <g class="points">
                 {#each pointsWithoutRefCode as point, i}
                     {#if point.cx && point.cy}
-                        <Tooltip {point} {w} />
+                        <Tooltip {point} {w} {points} />
                     {/if}
                 {/each}
 
                 {#each pointsWithRefCode as point, i}
                     {#if point.cx && point.cy}
-                        <Tooltip {point} {w} />
+                        <Tooltip {point} {w} {points}/>
                     {/if}
                 {/each}
             </g>

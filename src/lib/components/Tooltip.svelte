@@ -3,6 +3,7 @@
 
     export let point;
     export let w;
+    export let points;
 
     let boxWidth = 195;
     let boxHeight = 122;
@@ -48,13 +49,28 @@
     $: isSelected = $selected?.cx === point.cx && $selected?.cy === point.cy;
 
     function handleClick(e) {
+        const groupID = point["Group ID"] || null;
+        const relatedPoints = points.filter(
+            (p) =>
+                p["Group ID"] === groupID 
+                // && p["Unmatched ID"] !== point["Unmatched ID"], // add after it's added in the dataset
+        );
+
         selected.set({
             ...point,
             cx: point.cx,
             cy: point.cy,
             lat: point.lat,
             lon: point.lon,
-            id: point["Airwars ref code"],
+            id: point["Unmatched ID"],
+            related: relatedPoints.map((p) => ({
+                ...p,
+                cx: p.cx,
+                cy: p.cy,
+                lat: p.lat,
+                lon: p.lon,
+                id: p["Unmatched ID"],
+            })),
         });
 
         bringToFront(e);

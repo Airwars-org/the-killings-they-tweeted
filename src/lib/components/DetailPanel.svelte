@@ -56,25 +56,62 @@
                 />
             </svg>
         </div>
-        {#if selectedPoint.id && selectedPoint["Airwars ref code"] || selectedPoint["Umatched ID"]}
+        {#if selectedPoint["Airwars ref code"] || selectedPoint["Unmatched ID"]}
             <div class="video">
                 <video autoplay loop muted>
                     <track kind="captions" />
                     <source
-                        src="videos/{selectedPoint['Airwars ref code'] || selectedPoint["Umatched ID"]}.webm"
+                        src="videos/{selectedPoint['Airwars ref code'] ||
+                            selectedPoint['Unmatched ID']}.webm"
                         type="video/webm"
                     />
                     <source
-                        src="videos/{selectedPoint['Airwars ref code'] || selectedPoint["Umatched ID"]}.mp4"
+                        src="videos/{selectedPoint['Airwars ref code'] ||
+                            selectedPoint['Unmatched ID']}.mp4"
                         type="video/mp4"
                     />
                     Your browser does not support the video tag.
                 </video>
             </div>
         {/if}
+        {#if selectedPoint.related && selectedPoint.related.length > 0}
+            <div class="related">
+                <svg
+                    width="15"
+                    height="14"
+                    viewBox="0 0 15 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <circle
+                        cx="3.5"
+                        cy="3.5"
+                        r="3.5"
+                        transform="matrix(1 0 0 -1 8 14)"
+                        fill="#FC540D"
+                    />
+                    <circle
+                        cx="3.5"
+                        cy="3.5"
+                        r="3.5"
+                        transform="matrix(1 0 0 -1 0 14)"
+                        fill="#FC540D"
+                    />
+                    <circle
+                        cx="3.5"
+                        cy="3.5"
+                        r="3.5"
+                        transform="matrix(1 0 0 -1 4 7)"
+                        fill="#FC540D"
+                    />
+                </svg>
+
+                <span>Several explosions from one strike</span>
+            </div>
+        {/if}
         <div>
             <!-- {selectedPoint['Airwars ref code']} -->
-            {#if selectedPoint.id}
+            {#if selectedPoint.lat && selectedPoint.lon}
                 <div class="icon">
                     <svg
                         width="13"
@@ -92,9 +129,12 @@
                 </div>
             {/if}
             <div class="metadata">
-                <!-- {#if selectedPoint.id}
-                {selectedPoint.id}
-            {/if} -->
+                <!-- {#if selectedPoint["Airwars ref code"]}
+                    {selectedPoint["Airwars ref code"]}
+                {/if}
+                {#if selectedPoint["Unmatched ID"]}
+                    {selectedPoint["Unmatched ID"]}
+                {/if} -->
 
                 {#if selectedPoint.Title}
                     <div>
@@ -106,13 +146,35 @@
                     <div>
                         <h3>Location</h3>
                         {#if selectedPoint.Location}
-                            <h2>{selectedPoint.Location}</h2>
+                            {#if selectedPoint.lat && selectedPoint.lon}
+                                <a
+                                    class="link"
+                                    href="http://maps.google.com/maps?z=20&t=k&q=loc:{selectedPoint.lat},{selectedPoint.lon}&ll={selectedPoint.lat},{selectedPoint.lon}"
+                                    target="_blank"
+                                >
+                                    <h2>{selectedPoint.Location}</h2>
+                                </a>
+                            {:else}
+                                <h2>{selectedPoint.Location}</h2>
+                            {/if}
                         {/if}
-                        {#if selectedPoint.lat}
-                            <span>{selectedPoint.lat}</span>
-                        {/if}
-                        {#if selectedPoint.lon}
-                            <span>{selectedPoint.lon}</span>
+                        {#if selectedPoint.lat && selectedPoint.lon}
+                            <a
+                                class="link"
+                                href="http://maps.google.com/maps?z=20&t=k&q=loc:{selectedPoint.lat},{selectedPoint.lon}&ll={selectedPoint.lat},{selectedPoint.lon}"
+                                target="_blank"
+                            >
+                                <span
+                                    >{Number(selectedPoint.lat).toFixed(
+                                        6,
+                                    )}</span
+                                >
+                                <span
+                                    >{Number(selectedPoint.lon).toFixed(
+                                        6,
+                                    )}</span
+                                >
+                            </a>
                         {/if}
                     </div>
                 {/if}
@@ -191,6 +253,80 @@
                 </a></button
             >
         {/if}
+        {#if selectedPoint.related && selectedPoint.related.length > 0}
+            {#each selectedPoint.related as relatedPoint}
+                <div class="related-point">
+                    {#if selectedPoint.lat && selectedPoint.lon}
+                        <div class="icon">
+                            <svg
+                                width="13"
+                                height="19"
+                                viewBox="0 0 13 19"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M13 0H0V10.1739L6.5 18.3696L13 10.1739V0ZM6.5 10.3329C8.52905 10.3329 10.1739 8.66231 10.1739 6.60156C10.1739 4.54081 8.52905 2.87024 6.5 2.87024C4.47095 2.87024 2.82609 4.54081 2.82609 6.60156C2.82609 8.66231 4.47095 10.3329 6.5 10.3329Z"
+                                />
+                            </svg>
+                        </div>
+                    {/if}
+                    <div class="metadata">
+                        {#if relatedPoint.Title}
+                            <div>
+                                <h1>{relatedPoint.Title}</h1>
+                            </div>
+                        {/if}
+
+                        {#if relatedPoint.Location || relatedPoint.lat || relatedPoint.lon}
+                            <div>
+                                <h3>Location</h3>
+                                {#if relatedPoint.Location}
+                                    {#if relatedPoint.lat && relatedPoint.lon}
+                                        <a
+                                            class="link"
+                                            href="http://maps.google.com/maps?z=20&t=k&q=loc:{relatedPoint.lat},{relatedPoint.lon}&ll={relatedPoint.lat},{relatedPoint.lon}"
+                                            target="_blank"
+                                        >
+                                            <h2>{relatedPoint.Location}</h2>
+                                        </a>
+                                    {:else}
+                                        <h2>{relatedPoint.Location}</h2>
+                                    {/if}
+                                {/if}
+                                {#if relatedPoint.lat && relatedPoint.lon}
+                                    <a
+                                        class="link"
+                                        href="http://maps.google.com/maps?z=20&t=k&q=loc:{relatedPoint.lat},{relatedPoint.lon}&ll={relatedPoint.lat},{relatedPoint.lon}"
+                                        target="_blank"
+                                    >
+                                        <span
+                                            >{Number(selectedPoint.lat).toFixed(
+                                                6,
+                                            )}</span
+                                        >
+                                        <span
+                                            >{Number(selectedPoint.lon).toFixed(
+                                                6,
+                                            )}</span
+                                        >
+                                    </a>
+                                {/if}
+                            </div>
+                        {/if}
+
+                        {#if relatedPoint["Incident date"]}
+                            <div>
+                                <h3>Incident Date</h3>
+                                <h2>{relatedPoint["Incident date"]}</h2>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+            {/each}
+        {/if}
     </div>
 {/if}
 
@@ -198,6 +334,7 @@
     .panel {
         width: 320px;
         height: fit-content;
+        height: 100vh;
         color: var(--primary-color);
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
         overflow-y: auto;
@@ -217,6 +354,12 @@
         position: absolute;
         bottom: 8px;
         right: 8px;
+    }
+
+    .related {
+        background-color: #561b02 !important;
+        font-size: 1rem;
+        margin: 10px 0;
     }
 
     .ico a {
@@ -250,8 +393,17 @@
         text-decoration: none;
     }
 
+    .link {
+        color: var(--primary-color);
+    }
+
+    .related-point {
+        margin: 10px 0;
+    }
+
     .metadata {
         font-size: 13px;
+        width: 100%;
     }
 
     .metadata div {
