@@ -29,9 +29,14 @@
         }
     }
 
-    function handleClick(relatedPoint, e) {
+    function handleClick(relatedPoint) {
         const groupID = relatedPoint["Group ID"] || null;
-        const relatedPoints = points.filter((p) => p["Group ID"] === groupID);
+
+        const relatedPoints = points.filter(
+            (p) =>
+                p["Group ID"] === groupID &&
+                p["Unmatched ID"] !== relatedPoint.id,
+        );
 
         selected.set({
             ...relatedPoint,
@@ -52,8 +57,8 @@
         showEllipse(relatedPoint);
     }
     function showEllipse(point) {
-        const elementId = point["Unmatched ID"]; 
-        const element = document.getElementById(elementId); 
+        const elementId = point["Unmatched ID"];
+        const element = document.getElementById(elementId);
 
         const pointsGroup = document.querySelector(".points");
 
@@ -295,7 +300,7 @@
             {#each selectedPoint.related as relatedPoint}
                 <div
                     class="related-point"
-                    on:click={(e) => handleClick(relatedPoint, e)}
+                    on:click={(e) => handleClick(relatedPoint)}
                 >
                     {#if selectedPoint.lat && selectedPoint.lon}
                         <div class="icon">

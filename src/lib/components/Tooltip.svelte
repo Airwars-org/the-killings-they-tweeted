@@ -50,7 +50,12 @@
 
     function handleClick(e) {
         const groupID = point["Group ID"] || null;
-        const relatedPoints = points.filter((p) => p["Group ID"] === groupID);
+
+        const relatedPoints = points.filter(
+            (p) =>
+                p["Group ID"] === groupID &&
+                p["Unmatched ID"] !== point["Unmatched ID"],
+        );
 
         selected.set({
             ...point,
