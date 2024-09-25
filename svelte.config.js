@@ -12,15 +12,14 @@ const config = {
 				precompress: false
 			}
 		),
-		// paths: {
-		// 	base: '/map'
-		// },
+		paths: {
+			base: ''
+		},
 		alias: {
 			'@components': 'src/lib/components',
 			'@stores': 'src/lib/stores',
 			'@lib': 'src/lib',
-		},
-
+		}
 	}
 };
 

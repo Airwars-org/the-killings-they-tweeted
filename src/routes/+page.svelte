@@ -52,27 +52,27 @@
 
     @font-face {
     font-family: "Atlas Grotesk";
-    src: url("./fonts/AtlasGrotesk-Regular.woff2") format("woff2"),
-         url("./fonts/AtlasGrotesk-Regular.woff") format("woff"),
-         url("./fonts/AtlasGrotesk-Regular.otf") format("opentype");
+    src: url("/fonts/AtlasGrotesk-Regular.woff2") format("woff2"),
+         url("/fonts/AtlasGrotesk-Regular.woff") format("woff"),
+         url("/fonts/AtlasGrotesk-Regular.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Atlas Grotesk";
-    src: url("./fonts/AtlasGrotesk-Bold.woff2") format("woff2"),
-         url("./fonts/AtlasGrotesk-Bold.woff") format("woff"),
-         url("./fonts/AtlasGrotesk-Bold.otf") format("opentype");
+    src: url("/fonts/AtlasGrotesk-Bold.woff2") format("woff2"),
+         url("/fonts/AtlasGrotesk-Bold.woff") format("woff"),
+         url("/fonts/AtlasGrotesk-Bold.otf") format("opentype");
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Atlas Grotesk";
-    src: url("./fonts/AtlasGrotesk-RegularItalic.woff2") format("woff2"),
-         url("./fonts/AtlasGrotesk-RegularItalic.woff") format("woff"),
-         url("./fonts/AtlasGrotesk-RegularItalic.otf") format("opentype");
+    src: url("/fonts/AtlasGrotesk-RegularItalic.woff2") format("woff2"),
+         url("/fonts/AtlasGrotesk-RegularItalic.woff") format("woff"),
+         url("/fonts/AtlasGrotesk-RegularItalic.otf") format("opentype");
     font-weight: normal;
     font-style: italic;
 }
