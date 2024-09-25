@@ -48,8 +48,8 @@
     .map {
         margin-top: 20px;
         position: relative;
-        background: rgb(8, 8, 8, 0.5);
-        box-shadow: 0px -16px 20px 3px rgb(8, 8, 8, 0.5);
+        /* background: rgb(8, 8, 8, 0.5); */
+        /* box-shadow: 0px -16px 20px 3px rgb(8, 8, 8, 0.5); */
     }
 
     .mapContainer {
