@@ -35,7 +35,7 @@
         <Legend />
         <section class="map">
             <div class="panel">
-                <DetailPanel {data} />
+                <DetailPanel />
             </div>
             <div class="mapContainer">
                 <Map {data} />

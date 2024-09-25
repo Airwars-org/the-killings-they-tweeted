@@ -1,9 +1,9 @@
 <script>
     import { selected } from "$lib/stores/selected";
+    import { points } from "$lib/stores/points";
 
     export let point;
     export let w;
-    export let points;
 
     let boxWidth = 195;
     let boxHeight = 122;
@@ -46,12 +46,18 @@
         }
     }
 
-    $: isSelected = $selected?.cx === point.cx && $selected?.cy === point.cy;
+    $: isSelected = $selected?.cx == point.cx && $selected?.cy == point.cy;
+
+    $: {
+        if (isSelected) {
+            bringToFront(point);
+        }
+    }
 
     function handleClick(e) {
         const groupID = point["Group ID"] || null;
 
-        const relatedPoints = points.filter(
+        const relatedPoints = $points.filter(
             (p) =>
                 p["Group ID"] === groupID &&
                 p["Unmatched ID"] !== point["Unmatched ID"],
@@ -82,9 +88,22 @@
 
     let yOffset = 29;
 
-    function bringToFront(e) {
-        let currentElement = e.target.closest("g");
-        currentElement.parentNode.appendChild(currentElement);
+    function bringToFront(elementOrPoint) {
+        let element;
+        if (elementOrPoint instanceof Event) {
+            element = elementOrPoint.target.closest("g");
+            if (element && element.parentNode) {
+                element.parentNode.appendChild(element);
+            }
+        }
+        if (elementOrPoint?.["Unmatched ID"]) {
+            element = document.getElementById(point["Unmatched ID"]);
+            const pointsGroup = document.querySelector(".points");
+            if (element && element.parentNode) {
+                const parentGroup = element.parentNode;
+                pointsGroup.appendChild(parentGroup);
+            }
+        }
     }
 </script>
 

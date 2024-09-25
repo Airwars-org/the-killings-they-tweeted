@@ -1,10 +1,9 @@
 <script>
     import { onMount } from "svelte";
     import { selected } from "$lib/stores/selected";
-    import { onDestroy } from "svelte";
+    import { points } from "$lib/stores/points";
 
-    export let data;
-    let points = data;
+    import { onDestroy } from "svelte";
 
     let panelVisible = false;
     let selectedPoint = null;
@@ -32,7 +31,7 @@
     function handleClick(relatedPoint) {
         const groupID = relatedPoint["Group ID"] || null;
 
-        const relatedPoints = points.filter(
+        const relatedPoints = $points.filter(
             (p) =>
                 p["Group ID"] === groupID &&
                 p["Unmatched ID"] !== relatedPoint.id,
@@ -54,27 +53,6 @@
                 id: p["Unmatched ID"],
             })),
         });
-        showEllipse(relatedPoint);
-    }
-    function showEllipse(point) {
-        const elementId = point["Unmatched ID"];
-        const element = document.getElementById(elementId);
-
-        const pointsGroup = document.querySelector(".points");
-
-        // console.log(pointsGroup.querySelectorAll("g").length)
-
-        const previouslySelected = document.querySelector(".points .selected");
-        if (previouslySelected) {
-            previouslySelected.classList.remove("selected");
-        }
-
-        if (element && pointsGroup) {
-            const parentGroup = element.parentNode;
-            pointsGroup.appendChild(parentGroup);
-
-            parentGroup.classList.add("selected");
-        }
     }
 </script>
 

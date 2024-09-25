@@ -2,6 +2,7 @@
     import { geoPath, geoMercator } from "d3-geo";
     import * as topojson from "topojson-client";
     import Tooltip from "@components/Tooltip.svelte";
+    import { points } from "$lib/stores/points";
     // import { quadtree } from "d3-quadtree";
 
     export let data;
@@ -15,7 +16,7 @@
     let gaza = [];
     let boundary = [];
     let buildings = [];
-    let points = [];
+    let pointsArray = [];
 
     $: if (gaza.length === 0) {
         fetch("boundary.geojson")
@@ -46,7 +47,7 @@
             });
     }
 
-    points = data.map((d) => {
+    pointsArray = data.map((d) => {
         return {
             ...d,
             direction: d["direction"]
@@ -89,7 +90,7 @@
         svgWidth = width;
         svgHeight = scale * dy + padding[2];
 
-        points = points.map((d) => {
+        $points = pointsArray.map((d) => {
             const [cx, cy] = projection([d.lon, d.lat]);
             return {
                 ...d,
@@ -99,10 +100,12 @@
         });
     }
 
-    $: pointsWithRefCode = points.filter((point) => point["Airwars ref code"]);
-    $: pointsWithoutRefCode = points.filter(
-        (point) => !point["Airwars ref code"],
-    );
+    $: pointsWithRefCode = $points
+        ? $points.filter((point) => point["Airwars ref code"])
+        : [];
+    $: pointsWithoutRefCode = $points
+        ? $points.filter((point) => !point["Airwars ref code"])
+        : [];
 </script>
 
 <article bind:this={container} bind:clientWidth={w} class="map">
@@ -133,13 +136,13 @@
             <g class="points">
                 {#each pointsWithoutRefCode as point, i}
                     {#if point.cx && point.cy}
-                        <Tooltip {point} {w} {points} />
+                        <Tooltip {point} {w} />
                     {/if}
                 {/each}
 
                 {#each pointsWithRefCode as point, i}
                     {#if point.cx && point.cy}
-                        <Tooltip {point} {w} {points}/>
+                        <Tooltip {point} {w} />
                     {/if}
                 {/each}
             </g>
