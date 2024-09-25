@@ -61,15 +61,15 @@
                 <video autoplay loop muted>
                     <track kind="captions" />
                     <source
-                        src="videos/{selectedPoint['Airwars ref code'] ||
-                            selectedPoint['Group ID'] ||
-                            selectedPoint['Unmatched ID']}.webm"
+                        src="videos/{selectedPoint['Airwars ref code'].trim() ||
+                            selectedPoint['Group ID'].trim() ||
+                            selectedPoint['Unmatched ID'].trim()}.webm"
                         type="video/webm"
                     />
                     <source
-                        src="videos/{selectedPoint['Airwars ref code'] ||
-                            selectedPoint['Group ID'] ||
-                            selectedPoint['Unmatched ID']}.mp4"
+                        src="videos/{selectedPoint['Airwars ref code'].trim() ||
+                            selectedPoint['Group ID'].trim() ||
+                            selectedPoint['Unmatched ID'].trim()}.mp4"
                         type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -345,6 +345,8 @@
     video {
         width: 100%;
         height: auto;
+        max-height: 200px;
+        object-fit: cover;
         border-radius: 8px;
     }
 

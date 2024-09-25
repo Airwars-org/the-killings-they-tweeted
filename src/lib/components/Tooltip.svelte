@@ -159,13 +159,13 @@
                 <video autoplay loop muted>
                     <track kind="captions" />
                     <source
-                        src="videos/{point['Airwars ref code']}.webm"
+                        src="videos/{point['Airwars ref code'].trim()}.webm"
                         type="video/webm"
                     />
-                    <!-- <source
-                        src="videos/{point['Airwars ref code']}.mp4"
+                    <source
+                        src="videos/{point['Airwars ref code'].trim()}.mp4"
                         type="video/mp4"
-                    /> -->
+                    />
                     Your browser does not support the video tag.
                 </video>
             </div>
