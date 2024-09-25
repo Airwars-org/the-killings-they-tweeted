@@ -15,34 +15,34 @@
         if (w <= 768) {
             boxWidth = w / 6;
             boxHeight = w / 9;
-            lineMargin =
-                point.direction === "left-1" || point.direction === "left-2"
-                    ? -0.2
-                    : 10;
         } else {
             boxWidth = 195;
             boxHeight = 122;
-            lineMargin =
-                point.direction === "left-1" || point.direction === "left-2"
-                    ? -5
-                    : 10;
         }
 
-        offsetX =
-            point.direction === "left" ? -(boxWidth * 2) - 10 : boxWidth + 10;
+        lineMargin =
+            point.direction === "left" ||
+            point.direction === "left-1" ||
+            point.direction === "left-2"
+                ? -4
+                : 9;
 
-        if (point.direction === "right") {
-            offsetX = boxHeight;
-        } else if (point.direction === "right-1") {
-            offsetX = boxHeight * 1.5;
-        } else if (point.direction === "right-2") {
-            offsetX = boxHeight * 2;
-        } else if (point.direction === "left") {
-            offsetX = -boxHeight;
-        } else if (point.direction === "left-1") {
-            offsetX = -boxHeight * 2;
-        } else if (point.direction === "left-2") {
-            offsetX = -boxHeight * 2.5;
+        if (point.direction.startsWith("right")) {
+            if (point.direction === "right") {
+                offsetX = boxHeight / 2;
+            } else if (point.direction === "right-1") {
+                offsetX = boxHeight;
+            } else if (point.direction === "right-2") {
+                offsetX = boxHeight * 2;
+            }
+        } else if (point.direction.startsWith("left")) {
+            if (point.direction === "left") {
+                offsetX = -(boxWidth + boxHeight / 2);
+            } else if (point.direction === "left-1") {
+                offsetX = -(boxWidth + boxHeight);
+            } else if (point.direction === "left-2") {
+                offsetX = -(boxWidth + boxHeight * 2);
+            }
         }
     }
 
@@ -50,10 +50,7 @@
 
     function handleClick(e) {
         const groupID = point["Group ID"] || null;
-        const relatedPoints = points.filter(
-            (p) => p["Group ID"] === groupID,
-            // && p["Unmatched ID"] !== point["Unmatched ID"], // add after it's added in the dataset
-        );
+        const relatedPoints = points.filter((p) => p["Group ID"] === groupID);
 
         selected.set({
             ...point,
@@ -173,7 +170,14 @@
         </foreignObject>
         <!-- {/if} -->
     {:else}
-        <ellipse class="secondary" cx={point.cx} cy={point.cy} rx="4" ry="4" />
+        <ellipse
+            class="secondary"
+            id={point["Unmatched ID"]}
+            cx={point.cx}
+            cy={point.cy}
+            rx="4"
+            ry="4"
+        />
     {/if}
 </g>
 

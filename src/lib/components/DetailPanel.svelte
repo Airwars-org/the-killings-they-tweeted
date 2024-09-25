@@ -3,8 +3,10 @@
     import { selected } from "$lib/stores/selected";
     import { onDestroy } from "svelte";
 
-    let panelVisible = false;
+    export let data;
+    let points = data;
 
+    let panelVisible = false;
     let selectedPoint = null;
     let panelRef;
 
@@ -24,6 +26,49 @@
     function handleClickOutside(event) {
         if (panelVisible && panelRef && !panelRef.contains(event.target)) {
             selected.set(null);
+        }
+    }
+
+    function handleClick(relatedPoint, e) {
+        const groupID = relatedPoint["Group ID"] || null;
+        const relatedPoints = points.filter((p) => p["Group ID"] === groupID);
+
+        selected.set({
+            ...relatedPoint,
+            cx: relatedPoint.cx,
+            cy: relatedPoint.cy,
+            lat: relatedPoint.lat,
+            lon: relatedPoint.lon,
+            id: relatedPoint["Unmatched ID"],
+            related: relatedPoints.map((p) => ({
+                ...p,
+                cx: p.cx,
+                cy: p.cy,
+                lat: p.lat,
+                lon: p.lon,
+                id: p["Unmatched ID"],
+            })),
+        });
+        showEllipse(relatedPoint);
+    }
+    function showEllipse(point) {
+        const elementId = point["Unmatched ID"]; 
+        const element = document.getElementById(elementId); 
+
+        const pointsGroup = document.querySelector(".points");
+
+        // console.log(pointsGroup.querySelectorAll("g").length)
+
+        const previouslySelected = document.querySelector(".points .selected");
+        if (previouslySelected) {
+            previouslySelected.classList.remove("selected");
+        }
+
+        if (element && pointsGroup) {
+            const parentGroup = element.parentNode;
+            pointsGroup.appendChild(parentGroup);
+
+            parentGroup.classList.add("selected");
         }
     }
 </script>
@@ -248,7 +293,10 @@
         {#if selectedPoint.related && selectedPoint.related.length > 0}
             <p class="related-text">Related Strikes</p>
             {#each selectedPoint.related as relatedPoint}
-                <div class="related-point">
+                <div
+                    class="related-point"
+                    on:click={(e) => handleClick(relatedPoint, e)}
+                >
                     {#if selectedPoint.lat && selectedPoint.lon}
                         <div class="icon">
                             <svg
@@ -290,23 +338,19 @@
                                     {/if}
                                 {/if}
                                 {#if relatedPoint.lat && relatedPoint.lon}
-                                    <a
-                                        class="link"
-                                        href="http://maps.google.com/maps?z=20&t=k&q=loc:{relatedPoint.lat},{relatedPoint.lon}&ll={relatedPoint.lat},{relatedPoint.lon}"
-                                        target="_blank"
-                                    >
+                                    <span class="link">
                                         <h2>
-                                            {Number(selectedPoint.lat).toFixed(
+                                            {Number(relatedPoint.lat).toFixed(
                                                 6,
                                             )}
                                         </h2>
                                         ,
                                         <h2>
-                                            {Number(selectedPoint.lon).toFixed(
+                                            {Number(relatedPoint.lon).toFixed(
                                                 6,
                                             )}
                                         </h2>
-                                    </a>
+                                    </span>
                                 {/if}
                             </div>
                         {/if}
@@ -400,6 +444,12 @@
 
     .link:has(h2) {
         display: block;
+    }
+
+    .related-point:hover {
+        cursor: pointer;
+        border: 1px solid var(--primary-color) !important;
+        margin: -1px 0;
     }
 
     .link > h2 {
