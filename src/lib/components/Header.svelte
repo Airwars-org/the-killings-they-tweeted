@@ -27,8 +27,8 @@
 
         <p class="explore">
             Explore the map <svg
-                width="24"
-                height="40"
+                width="20"
+                height="36"
                 viewBox="0 0 24 40"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -51,9 +51,9 @@
         flex-wrap: wrap;
         gap: 10px;
         padding: 10px;
-        margin-bottom: 50px;
-        position: sticky;
-        top: 0;
+        margin-bottom: 100px;
+        /* position: sticky;
+        top: 0; */
     }
 
     div {
@@ -72,7 +72,7 @@
     }
 
     p {
-        font-size: clamp(1rem, 1vw, 1.3rem);
+        font-size: clamp(1.2rem, 1vw, 1.6rem);
     }
 
     .tiny {

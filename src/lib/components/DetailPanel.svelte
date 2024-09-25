@@ -111,7 +111,7 @@
                 <span>Several explosions from one strike</span>
             </div>
         {/if}
-        <div>
+        <div class="main">
             <!-- {selectedPoint['Airwars ref code']} -->
             {#if selectedPoint.lat && selectedPoint.lon}
                 <div class="icon">
@@ -166,25 +166,15 @@
                                 href="http://maps.google.com/maps?z=20&t=k&q=loc:{selectedPoint.lat},{selectedPoint.lon}&ll={selectedPoint.lat},{selectedPoint.lon}"
                                 target="_blank"
                             >
-                                <span
-                                    >{Number(selectedPoint.lat).toFixed(
-                                        6,
-                                    )}</span
-                                >
-                                <span
-                                    >{Number(selectedPoint.lon).toFixed(
-                                        6,
-                                    )}</span
-                                >
+                                <h2>
+                                    {Number(selectedPoint.lat).toFixed(6)}
+                                </h2>
+                                ,
+                                <h2>
+                                    {Number(selectedPoint.lon).toFixed(6)}
+                                </h2>
                             </a>
                         {/if}
-                    </div>
-                {/if}
-
-                {#if selectedPoint["Incident date"]}
-                    <div>
-                        <h3>Incident Date</h3>
-                        <h2>{selectedPoint["Incident date"]}</h2>
                     </div>
                 {/if}
 
@@ -256,6 +246,7 @@
             >
         {/if}
         {#if selectedPoint.related && selectedPoint.related.length > 0}
+            <p class="related-text">Related Strikes</p>
             {#each selectedPoint.related as relatedPoint}
                 <div class="related-point">
                     {#if selectedPoint.lat && selectedPoint.lon}
@@ -304,16 +295,17 @@
                                         href="http://maps.google.com/maps?z=20&t=k&q=loc:{relatedPoint.lat},{relatedPoint.lon}&ll={relatedPoint.lat},{relatedPoint.lon}"
                                         target="_blank"
                                     >
-                                        <span
-                                            >{Number(selectedPoint.lat).toFixed(
+                                        <h2>
+                                            {Number(selectedPoint.lat).toFixed(
                                                 6,
-                                            )}</span
-                                        >
-                                        <span
-                                            >{Number(selectedPoint.lon).toFixed(
+                                            )}
+                                        </h2>
+                                        ,
+                                        <h2>
+                                            {Number(selectedPoint.lon).toFixed(
                                                 6,
-                                            )}</span
-                                        >
+                                            )}
+                                        </h2>
                                     </a>
                                 {/if}
                             </div>
@@ -344,8 +336,7 @@
 
     video {
         width: 100%;
-        height: auto;
-        max-height: 200px;
+        height: 180px;
         object-fit: cover;
         border-radius: 8px;
     }
@@ -364,6 +355,12 @@
         background-color: #561b02 !important;
         font-size: 1rem;
         margin: 10px 0;
+    }
+
+    .related-text {
+        font-size: 0.875rem;
+        margin: 10px 0;
+        padding: 10px 0;
     }
 
     .ico a {
@@ -401,6 +398,14 @@
         color: var(--primary-color);
     }
 
+    .link:has(h2) {
+        display: block;
+    }
+
+    .link > h2 {
+        display: inline;
+    }
+
     .related-point {
         margin: 10px 0;
     }
@@ -428,7 +433,7 @@
         border-radius: 8px;
     }
 
-    .panel > div:has(+ .related-point):not(.related-point) {
+    .panel > .main:has(+ .related-text):not(.related-text) {
         border: 1px solid var(--primary-color);
     }
 
@@ -455,11 +460,11 @@
     }
 
     h3 {
+        font-weight: bold;
         font-size: 10px;
         text-transform: uppercase;
         margin: 5px 0;
         padding: 0;
-        font-weight: 400;
         opacity: 40%;
     }
 

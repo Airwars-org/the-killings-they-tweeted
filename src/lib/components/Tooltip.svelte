@@ -24,7 +24,7 @@
             boxHeight = 122;
             lineMargin =
                 point.direction === "left-1" || point.direction === "left-2"
-                    ? -10
+                    ? -5
                     : 10;
         }
 
@@ -51,9 +51,8 @@
     function handleClick(e) {
         const groupID = point["Group ID"] || null;
         const relatedPoints = points.filter(
-            (p) =>
-                p["Group ID"] === groupID 
-                // && p["Unmatched ID"] !== point["Unmatched ID"], // add after it's added in the dataset
+            (p) => p["Group ID"] === groupID,
+            // && p["Unmatched ID"] !== point["Unmatched ID"], // add after it's added in the dataset
         );
 
         selected.set({
@@ -77,7 +76,7 @@
     }
 
     $: markerTranslateX = point.cx - 10;
-    $: markerTranslateY = point.cy - 29;
+    $: markerTranslateY = point.cy - 30;
 
     let yOffset = 29;
 
@@ -116,8 +115,8 @@
             <svg
                 x={markerTranslateX}
                 y={markerTranslateY}
-                width="20"
-                height="29"
+                width="15"
+                height="24"
                 viewBox="0 0 20 29"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -128,6 +127,7 @@
                     d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
                     fill="white"
                 />
+                <circle cx="10" cy="10.1562" r="5" fill="black" stroke="none" />
             </svg>
         {:else}
             <svg
@@ -145,6 +145,7 @@
                     d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
                     fill="white"
                 />
+                <circle cx="10" cy="10.1562" r="5" fill="black" stroke="none" />
             </svg>
         {/if}
 
