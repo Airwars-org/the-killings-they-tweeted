@@ -95,7 +95,7 @@
                 {/each}
             </g>
 
-            <g class="points">
+            <g class="legend-points">
                 {#each pointsArray as point, i}
                     {#if point.cx && point.cy}
                         <circle
@@ -124,7 +124,7 @@
         stroke: rgb(89, 89, 89);
     }
 
-    .points circle {
+    .legend-points circle {
         fill: var(--primary-color);
         stroke: none;
     }
