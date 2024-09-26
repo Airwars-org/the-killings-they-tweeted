@@ -74,6 +74,7 @@
     .panel {
         z-index: 1;
         margin-left: calc(100vw - 320px - 10px);
+        overflow: scroll;
     }
 
     .small {

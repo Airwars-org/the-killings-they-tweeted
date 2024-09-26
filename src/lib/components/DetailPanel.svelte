@@ -280,7 +280,7 @@
                     class="related-point"
                     on:click={(e) => handleClick(relatedPoint)}
                 >
-                    {#if selectedPoint.lat && selectedPoint.lon}
+                    <!-- {#if selectedPoint.lat && selectedPoint.lon}
                         <div class="icon">
                             <svg
                                 width="13"
@@ -296,7 +296,7 @@
                                 />
                             </svg>
                         </div>
-                    {/if}
+                    {/if} -->
                     <div class="metadata">
                         {#if relatedPoint.Title}
                             <div>
@@ -358,7 +358,7 @@
         height: 100vh;
         color: var(--primary-color);
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-        overflow-y: auto;
+        /* overflow-y: auto; */
     }
 
     video {
@@ -456,6 +456,8 @@
 
     .metadata div:last-of-type {
         border-bottom: unset;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
     }
 
     .panel > div:not(:first-of-type):not(.video) {

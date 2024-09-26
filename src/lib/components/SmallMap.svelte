@@ -121,7 +121,7 @@
     .streets {
         fill: none;
         stroke-width: 0.1px;
-        stroke: rgb(89, 89, 89);
+        stroke: rgb(60, 60, 60);
     }
 
     .legend-points circle {
