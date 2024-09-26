@@ -86,7 +86,7 @@
         </div>
         {#if selectedPoint["Airwars ref code"] || selectedPoint["Group ID"] || selectedPoint["Unmatched ID"]}
             <div class="video">
-                <video autoplay loop muted>
+                <video autoplay loop muted webkit-playsinline playsinline>
                     <track kind="captions" />
                     <source
                         src="videos/{selectedPoint['Airwars ref code'].trim() ||

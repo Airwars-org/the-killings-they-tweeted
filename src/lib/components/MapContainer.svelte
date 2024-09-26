@@ -5,26 +5,20 @@
 
     import { csv } from "d3";
     import { selected } from "$lib/stores/selected";
-    import { onMount, tick } from "svelte";
+    import { onMount } from "svelte";
+    import SmallMap from "./SmallMap.svelte";
 
     let data = [];
-    let scrollY = 0;
-    let lastScrollY = 0;
-    let scrollThreshold = 20;
+    let windowWidth = 0;
 
-    const handleScroll = async () => {
-        await tick();
-
-        scrollY = window.scrollY;
-
-        if (Math.abs(scrollY - lastScrollY) > scrollThreshold) {
-            selected.set(null);
-            lastScrollY = scrollY;
-        }
+    const handleResize = () => {
+        windowWidth = window.innerWidth;
     };
 
     onMount(async () => {
         data = await csv("data.csv");
+        handleResize();
+        window.addEventListener("resize", handleResize);
     });
 </script>
 
@@ -32,10 +26,22 @@
     <p>Loading...</p>
 {:else}
     <section class="map">
-        <Legend />
         <section class="map">
-            <div class="panel">
-                <DetailPanel />
+            {#if windowWidth <= 800}
+                <Legend />
+            {/if}
+            <div class="sticky">
+                <div class="panel">
+                    {#if windowWidth > 800}
+                        <Legend />
+                    {/if}
+                    <DetailPanel />
+                </div>
+                {#if windowWidth > 800}
+                    <div class="small">
+                        <SmallMap {data} {windowWidth} />
+                    </div>
+                {/if}
             </div>
             <div class="mapContainer">
                 <Map {data} />
@@ -54,15 +60,28 @@
 
     .mapContainer {
         margin-top: -100vh;
+        margin-bottom: 100px;
+    }
+
+    .sticky {
+        position: sticky;
+        z-index: 1;
+        top: 10px;
+        height: 100vh;
+        pointer-events: none;
     }
 
     .panel {
-        position: sticky;
-        height: 100vh;
         z-index: 1;
-        top: 10px;
         margin-left: calc(100vw - 320px - 10px);
-        pointer-events: none;
+    }
+
+    .small {
+        position: absolute;
+        z-index: -1;
+        bottom: 10px;
+        margin: 10px;
+        /* height: 100vh; */
     }
 
     :global(.panel > .panel) {
@@ -78,6 +97,10 @@
             margin-left: 0;
             top: 0px;
             /* height: 50vh; */
+        }
+
+        .sticky {
+            top: 0px;
         }
     }
 </style>

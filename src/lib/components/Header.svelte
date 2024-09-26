@@ -90,6 +90,7 @@
     @media (max-width: 800px) {
         section {
             position: unset;
+            margin-bottom: 50px;
         }
     }
 </style>

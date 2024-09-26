@@ -1,0 +1,131 @@
+<script>
+    import { geoPath, geoMercator } from "d3-geo";
+
+    export let data;
+    export let windowWidth;
+
+    let container;
+    let w = windowWidth > 800 ? 100 : 50;
+    let h = windowWidth > 800 ? 300 : 150;
+
+    let svgWidth = 0;
+    let svgHeight = 0;
+    let projection;
+    let path;
+    let boundary = [];
+    let pointsArray = [];
+    let gaza = [];
+
+    $: if (boundary.length == 0) {
+        fetch("boundary.geojson")
+            .then((response) => response.json())
+            .then((boundaryData) => {
+                boundary = boundaryData.features;
+            });
+
+        fetch("streets.geojson")
+            .then((response) => response.json())
+            .then((gazaData) => {
+                gaza = gazaData.features;
+            });
+    }
+
+    pointsArray = data.map((d) => {
+        return {
+            ...d,
+            direction: d["direction"]
+                ? d["direction"]
+                : Math.random() > 0.5
+                  ? "left"
+                  : "right",
+            date: d["Date of incident"],
+        };
+    });
+
+    $: if (w && boundary.length > 0) {
+        updateMap(w, h);
+    }
+
+    function updateMap(width, height) {
+        projection = geoMercator().rotate([-48, 48]).scale(1).translate([0, 0]);
+
+        const pathGenerator = geoPath().projection(projection);
+        const bounds = pathGenerator.bounds({
+            type: "FeatureCollection",
+            features: boundary,
+        });
+
+        const dx = bounds[1][0] - bounds[0][0];
+        const dy = bounds[1][1] - bounds[0][1];
+        const x = (bounds[0][0] + bounds[1][0]) / 2;
+        const y = (bounds[0][1] + bounds[1][1]) / 2;
+
+        const padding = [10, 10];
+        const scale = Math.min(
+            (width - padding[0]) / dx,
+            (height - padding[1]) / dy,
+        );
+        const translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+        projection = projection.scale(scale).translate(translate);
+        path = geoPath().projection(projection);
+
+        pointsArray = pointsArray.map((d) => {
+            const [cx, cy] = projection([d.lon, d.lat]);
+            return { ...d, cx, cy };
+        });
+
+        svgWidth = width;
+        svgHeight = height;
+    }
+</script>
+
+<article bind:this={container} class="map">
+    {#if boundary.length > 0}
+        <svg width={svgWidth} height={svgHeight}>
+            <g class="boundary">
+                {#each boundary as feature, i}
+                    <path d={path(feature)} class="boundary" />
+                {/each}
+            </g>
+
+            <g class="streets">
+                {#each gaza as feature, i}
+                    <path d={path(feature)} class="street" />
+                {/each}
+            </g>
+
+            <g class="points">
+                {#each pointsArray as point, i}
+                    {#if point.cx && point.cy}
+                        <circle
+                            cx={point.cx}
+                            cy={point.cy}
+                            r={1}
+                            fill="var(--primary-color)"
+                        />
+                    {/if}
+                {/each}
+            </g>
+        </svg>
+    {/if}
+</article>
+
+<style>
+    .boundary {
+        fill: rgb(14, 14, 14);
+        stroke-width: 1px;
+        stroke: rgb(89, 89, 89);
+    }
+
+    .streets {
+        fill: none;
+        stroke-width: 0.1px;
+        stroke: rgb(89, 89, 89);
+    }
+
+    .points circle {
+        fill: var(--primary-color);
+        stroke: none;
+    }
+</style>

@@ -178,7 +178,7 @@
             height={boxHeight}
         >
             <div>
-                <video autoplay loop muted>
+                <video autoplay loop muted webkit-playsinline playsinline>
                     <track kind="captions" />
                     <source
                         src="videos/{point['Airwars ref code'].trim()}.webm"

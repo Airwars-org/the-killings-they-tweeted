@@ -1,8 +1,9 @@
 <div class="legend">
     <p class="explore">
         <svg
-            width="1rem"
-            height="1rem"
+            class="marker"
+            width=".6rem"
+            height=".6rem"
             viewBox="0 0 20 29"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,12 +23,13 @@
             /> -->
         </svg>
 
-        Geolocated IAF footage
+        Confirmed civilian harm
     </p>
     <p>
         <svg
-            width="1rem"
-            height="1rem"
+            class="marker"
+            width=".6rem"
+            height=".6rem"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -35,26 +37,68 @@
             <ellipse cx="10" cy="10" rx="4" ry="4" fill="white" />
         </svg>
 
-        Geolocated civilian harm incidents
+        IAF Footage
     </p>
+
+    <svg
+        width="17"
+        height="17"
+        viewBox="0 0 17 17"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g opacity="0.5">
+            <rect
+                x="0.5"
+                y="0.5"
+                width="16"
+                height="15.756"
+                rx="7.878"
+                stroke="#FC540D"
+            />
+            <path
+                d="M9.68845 6.376C9.68845 5.76 9.28145 5.364 8.56645 5.364C7.86245 5.364 7.26845 5.749 7.26845 6.937H5.59645C5.56345 5.21 6.63045 4 8.59945 4C10.5794 4 11.4044 5.023 11.4044 6.288C11.4044 7.3 10.9754 7.85 10.2604 8.444L9.52345 9.06C9.29245 9.247 9.21545 9.346 9.21545 9.654V10.127H7.70845V9.423C7.70845 8.73 7.79645 8.554 8.37945 8.081L9.00645 7.564C9.42445 7.212 9.68845 6.926 9.68845 6.376ZM9.42445 12.756H7.49945V11.084H9.42445V12.756Z"
+                fill="#FC540D"
+            />
+        </g>
+    </svg>
 </div>
 
 <style>
     .legend {
-        width: 100%;
+        display: flex;
+        align-items: center;
+        background-color: #561b02 !important;
+        font-size: 1rem;
+        display: flex;
+        margin: 10px 0;
+        border-radius: 8px;
+        width: 320px;
+        height: fit-content;
+    }
 
-        /* width: calc(100% - 20px); */
+    .marker * {
+        fill: var(--primary-color);
+        padding: 5px;
     }
 
     p {
-        font-size: clamp(1rem, 1vw, 1.3rem);
-        flex: 100%;
-        padding: 0 10px;
-        margin: 5px 0;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 10px;
+        color: var(--primary-color);
+        font-size: clamp(12px, 1vw, 14px);
+        /* flex: 100%; */
+        padding: 5px;
+        margin: 0;
+    }
+
+    @media (max-width: 800px) {
+        .legend {
+            width: 100%;
+            margin: 0;
+            padding: 10px;
+            border-radius: 0;
+            
+            display: block;
+            background-color: black !important;
+        }
     }
 </style>
