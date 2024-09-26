@@ -41,8 +41,8 @@
     </p>
 
     <svg
-        width="17"
-        height="17"
+        width=".9rem"
+        height=".9rem"
         viewBox="0 0 17 17"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +75,10 @@
         border-radius: 8px;
         width: 320px;
         height: fit-content;
+
+        align-content: center;
+        align-items: center;
+        gap: 5px;
     }
 
     .marker * {
@@ -84,9 +88,9 @@
 
     p {
         color: var(--primary-color);
-        font-size: clamp(12px, 1vw, 14px);
-        /* flex: 100%; */
+        font-size: clamp(14px, 1vw, 16px);
         padding: 5px;
+        vertical-align: middle;
         margin: 0;
     }
 
@@ -96,7 +100,7 @@
             margin: 0;
             padding: 10px;
             border-radius: 0;
-            
+
             display: block;
             background-color: black !important;
         }
