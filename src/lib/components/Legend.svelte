@@ -88,7 +88,7 @@
 
     p {
         color: var(--primary-color);
-        font-size: clamp(14px, 1vw, 16px);
+        font-size: clamp(12px, 1vw, 14px);
         padding: 5px;
         vertical-align: middle;
         margin: 0;
