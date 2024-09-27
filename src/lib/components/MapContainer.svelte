@@ -2,23 +2,42 @@
     import Map from "@components/Map.svelte";
     import Legend from "@components/Legend.svelte";
     import DetailPanel from "@components/DetailPanel.svelte";
-
     import { csv } from "d3";
-    import { selected } from "$lib/stores/selected";
     import { onMount } from "svelte";
     import SmallMap from "./SmallMap.svelte";
 
     let data = [];
+    let mapContainer;
     let windowWidth = 0;
+    let scrollPercentage = 0;
+    let containerHeight = 0;
+    let viewportHeight = 0;
 
     const handleResize = () => {
         windowWidth = window.innerWidth;
+        viewportHeight = window.innerHeight;
+    };
+
+    const handleScroll = () => {
+        if (mapContainer) {
+            const containerBounds = mapContainer.getBoundingClientRect();
+            containerHeight = containerBounds.height;
+
+            const maxScrollHeight = containerHeight - viewportHeight;
+            const scrolledDistance = Math.max(0, -containerBounds.top);
+
+            scrollPercentage = Math.min(
+                Math.max(0, (scrolledDistance / maxScrollHeight) * 100),
+                100,
+            );
+        }
     };
 
     onMount(async () => {
         data = await csv("data.csv");
         handleResize();
         window.addEventListener("resize", handleResize);
+        window.addEventListener("scroll", handleScroll);
     });
 </script>
 
@@ -39,11 +58,17 @@
                 </div>
                 {#if windowWidth > 800}
                     <div class="small">
-                        <SmallMap {data} {windowWidth} />
+                        <SmallMap
+                            {data}
+                            {windowWidth}
+                            {scrollPercentage}
+                            {containerHeight}
+                            {viewportHeight}
+                        />
                     </div>
                 {/if}
             </div>
-            <div class="mapContainer">
+            <div class="mapContainer" bind:this={mapContainer}>
                 <Map {data} />
             </div>
         </section>
@@ -54,8 +79,6 @@
     .map {
         margin-top: 20px;
         position: relative;
-        /* background: rgb(8, 8, 8, 0.5); */
-        /* box-shadow: 0px -16px 20px 3px rgb(8, 8, 8, 0.5); */
     }
 
     .mapContainer {
@@ -82,7 +105,6 @@
         z-index: -1;
         bottom: 10px;
         margin: 10px;
-        /* height: 100vh; */
     }
 
     :global(.panel > .panel) {
@@ -97,7 +119,6 @@
         .panel {
             margin-left: 0;
             top: 0px;
-            /* height: 50vh; */
         }
 
         .sticky {

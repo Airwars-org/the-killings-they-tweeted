@@ -3,6 +3,9 @@
 
     export let data;
     export let windowWidth;
+    export let scrollPercentage;
+    export let containerHeight;
+    export let viewportHeight;
 
     let container;
     let w = windowWidth > 800 ? 100 : 50;
@@ -15,6 +18,7 @@
     let boundary = [];
     let pointsArray = [];
     let gaza = [];
+    let viewportRect = { x: 0, y: 0, width: w, height: 200 };
 
     $: if (boundary.length == 0) {
         fetch("boundary.geojson")
@@ -44,6 +48,18 @@
 
     $: if (w && boundary.length > 0) {
         updateMap(w, h);
+    }
+
+    $: if (svgHeight && containerHeight) {
+        const ratio = svgHeight / containerHeight;
+        const rectHeight = viewportHeight * ratio;
+
+        viewportRect = {
+            x: 0,
+            y: (svgHeight - rectHeight) * (scrollPercentage / 100),
+            width: svgWidth,
+            height: rectHeight,
+        };
     }
 
     function updateMap(width, height) {
@@ -98,15 +114,20 @@
             <g class="legend-points">
                 {#each pointsArray as point, i}
                     {#if point.cx && point.cy}
-                        <circle
-                            cx={point.cx}
-                            cy={point.cy}
-                            r={1}
-                            fill="var(--primary-color)"
-                        />
+                        <circle cx={point.cx} cy={point.cy} r={1} />
                     {/if}
                 {/each}
             </g>
+
+            <rect
+                x={viewportRect.x}
+                y={viewportRect.y}
+                width={viewportRect.width}
+                height={viewportRect.height}
+                fill="var(--primary-color)"
+                stroke="red"
+                stroke-width="0.5"
+            />
         </svg>
     {/if}
 </article>
@@ -122,6 +143,10 @@
         fill: none;
         stroke-width: 0.1px;
         stroke: rgb(60, 60, 60);
+    }
+
+    rect {
+        opacity: 0.3;
     }
 
     .legend-points circle {

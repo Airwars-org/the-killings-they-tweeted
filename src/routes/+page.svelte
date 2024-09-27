@@ -19,7 +19,7 @@
         --primary-color: rgb(252, 84, 13);
         /* background-color: var(--primary-color); */
         background-color: rgb(8, 8, 8);
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     :global(body) {
@@ -35,7 +35,7 @@
         );
         background-size: 30px 30px;
         height: 100vh;
-        overflow: scroll;
+        /* overflow: scroll; */
     }
 
     :global(::selection) {
