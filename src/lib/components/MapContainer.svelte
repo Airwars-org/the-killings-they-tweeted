@@ -38,6 +38,7 @@
         handleResize();
         window.addEventListener("resize", handleResize);
         window.addEventListener("scroll", handleScroll);
+        handleScroll();
     });
 </script>
 
