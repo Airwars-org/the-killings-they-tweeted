@@ -73,6 +73,7 @@
 
     p {
         font-size: clamp(1.2rem, 1vw, 1.6rem);
+        line-height: 1.3em;
     }
 
     .tiny {
