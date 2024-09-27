@@ -484,6 +484,7 @@
         margin: 0;
         padding: 0;
         font-size: 24px;
+        line-height: 1.1em;
         font-weight: 400;
     }
 
@@ -491,12 +492,14 @@
         margin: 0;
         padding: 0;
         font-size: 19px;
+        line-height: 1.1em;
         font-weight: 400;
     }
 
     h3 {
         font-weight: bold;
         font-size: 10px;
+        line-height: 1.1em;
         text-transform: uppercase;
         margin: 5px 0;
         padding: 0;
