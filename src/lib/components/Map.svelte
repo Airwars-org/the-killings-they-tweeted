@@ -3,7 +3,6 @@
     import * as topojson from "topojson-client";
     import Tooltip from "@components/Tooltip.svelte";
     import { points } from "$lib/stores/points";
-    // import { quadtree } from "d3-quadtree";
 
     export let data;
 
@@ -30,12 +29,6 @@
             .then((gazaData) => {
                 gaza = gazaData.features;
             });
-
-        // fetch("centroids.geojson")
-        //     .then((response) => response.json())
-        //     .then((buildingsData) => {
-        //         buildings = buildingsData.features;
-        //     });
 
         fetch("buildings2.json")
             .then((response) => response.json())

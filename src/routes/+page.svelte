@@ -1,11 +1,10 @@
 <script>
     import Video from "@components/Video.svelte";
     import Header from "@components/Header.svelte";
-
+    import Footer from "@components/Footer.svelte";
     import MapContainer from "@components/MapContainer.svelte";
 </script>
 
-<!-- <svelte:window on:scroll={handleScroll} /> -->
 <svelte:window />
 
 <article>
@@ -13,13 +12,12 @@
     <Header />
     <MapContainer />
 </article>
+<Footer />
 
 <style>
     :global(html) {
         --primary-color: rgb(252, 84, 13);
-        /* background-color: var(--primary-color); */
         background-color: rgb(8, 8, 8);
-        /* overflow: hidden; */
     }
 
     :global(body) {
@@ -35,7 +33,6 @@
         );
         background-size: 30px 30px;
         height: 100vh;
-        /* overflow: scroll; */
     }
 
     :global(::selection) {
@@ -47,34 +44,35 @@
         max-width: 1920px;
         display: block;
         margin: 0 auto;
-   
     }
 
     @font-face {
-    font-family: "Atlas Grotesk";
-    src: url("/fonts/AtlasGrotesk-Regular.woff2") format("woff2"),
-         url("/fonts/AtlasGrotesk-Regular.woff") format("woff"),
-         url("/fonts/AtlasGrotesk-Regular.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
+        font-family: "Atlas Grotesk";
+        src:
+            url("/fonts/AtlasGrotesk-Regular.woff2") format("woff2"),
+            url("/fonts/AtlasGrotesk-Regular.woff") format("woff"),
+            url("/fonts/AtlasGrotesk-Regular.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+    }
 
-@font-face {
-    font-family: "Atlas Grotesk";
-    src: url("/fonts/AtlasGrotesk-Bold.woff2") format("woff2"),
-         url("/fonts/AtlasGrotesk-Bold.woff") format("woff"),
-         url("/fonts/AtlasGrotesk-Bold.otf") format("opentype");
-    font-weight: bold;
-    font-style: normal;
-}
+    @font-face {
+        font-family: "Atlas Grotesk";
+        src:
+            url("/fonts/AtlasGrotesk-Bold.woff2") format("woff2"),
+            url("/fonts/AtlasGrotesk-Bold.woff") format("woff"),
+            url("/fonts/AtlasGrotesk-Bold.otf") format("opentype");
+        font-weight: bold;
+        font-style: normal;
+    }
 
-@font-face {
-    font-family: "Atlas Grotesk";
-    src: url("/fonts/AtlasGrotesk-RegularItalic.woff2") format("woff2"),
-         url("/fonts/AtlasGrotesk-RegularItalic.woff") format("woff"),
-         url("/fonts/AtlasGrotesk-RegularItalic.otf") format("opentype");
-    font-weight: normal;
-    font-style: italic;
-}
-
+    @font-face {
+        font-family: "Atlas Grotesk";
+        src:
+            url("/fonts/AtlasGrotesk-RegularItalic.woff2") format("woff2"),
+            url("/fonts/AtlasGrotesk-RegularItalic.woff") format("woff"),
+            url("/fonts/AtlasGrotesk-RegularItalic.otf") format("opentype");
+        font-weight: normal;
+        font-style: italic;
+    }
 </style>

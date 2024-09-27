@@ -5,41 +5,29 @@
         <h1>They</h1>
         <h1>Tweeted</h1>
 
-        <p>An Airwars and Sky News investigation</p>
+        <p>An Airwars investigation</p>
         <p>
-            By Rowena De Silva, Joe Dyke, Nikolaj Houman, Sanjana Varghese and
-            Nathan Walker
-        </p>
-        <p class="tiny">
-            Additional support from Giacomo Nanni, Azul de Monte, Maia, Rosie
-            etc
+            By Rowena De Silva, Nikolaj Houmann Mortensen, Joe Dyke, Sanjana
+            Varghese, Nathan Walker, Rosie Harris-Davidson, Maia Awada, Azul De
+            Monte, Giacomo Nanni
         </p>
     </div>
     <div>
         <p>
-            Explore the intricate landscape of airstrikes in the Middle East and
-            unveil the hidden realities behind these strategic military
-            maneuvers. Acquire in-depth knowledge about the complexities of
-            airstrikes in this particular region, distinguishing between
-            verifiable truths and common misconceptions, all the while
-            illuminating the current state of affairs.
+            In the largest public analysis of military airstrike footage,
+            Airwars, in collaboration with Sky News, reviewed hundreds of clips
+            of strikes in Gaza released on social media by the Israeli military.
+            By geolocating the footage and matching it with Palestinian reports,
+            we identified 17 strikes in which civilians were harmed that the
+            Israeli military itself published footage of. In these strikes
+            alone, more than 400 Palestinian civilians were reported killed.
         </p>
 
-        <p class="explore">
-            Explore the map <svg
-                width="20"
-                height="36"
-                viewBox="0 0 24 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M9.6 20H-1.90735e-06V24.492L12 40.0003L24 24.492L24 20H14.4L14.4 3.25928L9.6 3.25928L9.6 20ZM9.6 20V27.7041H14.4V20L9.6 20Z"
-                    fill="#FC540D"
-                />
-            </svg>
+        <p>
+            The video above explains the investigation’s findings, while the
+            interactive map below features all strike footage we geolocated from
+            the first month of the war, including those matched to the Airwars
+            civilian harm archive.
         </p>
     </div>
 </section>
@@ -52,8 +40,6 @@
         gap: 10px;
         padding: 10px;
         margin-bottom: 100px;
-        /* position: sticky;
-        top: 0; */
     }
 
     div {

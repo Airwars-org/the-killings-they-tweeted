@@ -46,6 +46,10 @@
     <p>Loading...</p>
 {:else}
     <section class="map">
+        <p>
+            Geolocated Israeli military strike footage in Gaza October
+            7th-November 7th, 2023.
+        </p>
         <section class="map">
             {#if windowWidth <= 800}
                 <Legend />
@@ -80,6 +84,13 @@
     .map {
         margin-top: 20px;
         position: relative;
+    }
+
+    .map p {
+        max-width: 640px;
+        color: var(--primary-color);
+        color: white;
+        opacity: 0.7;
     }
 
     .mapContainer {

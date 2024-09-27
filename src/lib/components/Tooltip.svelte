@@ -170,7 +170,6 @@
             </svg>
         {/if}
 
-        <!-- {#if w > 768} -->
         <foreignObject
             x={point.cx + offsetX}
             y={point.cy - yOffset - boxHeight / 2}
@@ -192,7 +191,6 @@
                 </video>
             </div>
         </foreignObject>
-        <!-- {/if} -->
     {:else}
         <ellipse
             class="secondary"
@@ -206,17 +204,9 @@
 </g>
 
 <style>
-    .geo {
-        fill: white;
-    }
-
     .line {
         stroke-width: 2;
         stroke: white;
-    }
-
-    .box {
-        /* stroke-width: 2; */
     }
 
     foreignObject,
@@ -227,7 +217,6 @@
     }
 
     foreignObject div {
-        /* pointer-events: none; */
         width: 100%;
         height: 100%;
         border-radius: 10px;
@@ -260,13 +249,11 @@
     }
 
     .selected foreignObject {
-        /* mix-blend-mode: darken; */
         cursor: pointer;
     }
 
     .selected div {
         position: relative;
-        /* mix-blend-mode: darken; */
     }
 
     .selected div:after {
@@ -278,15 +265,6 @@
         mix-blend-mode: multiply;
         border-radius: inherit;
     }
-    /* .selected div:before {
-        z-index: 1;
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgb(255, 255, 255);
-        mix-blend-mode: color;
-        border-radius: inherit;
-    } */
 
     .selected,
     .selected div {
