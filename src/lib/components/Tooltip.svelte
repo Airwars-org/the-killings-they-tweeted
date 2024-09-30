@@ -14,8 +14,9 @@
 
     $: {
         if (w <= 768) {
-            boxWidth = w / 7;
-            boxHeight = w / 10;
+            boxWidth = w / 7.38;
+            boxHeight = w / 11.8;
+
             if (
                 point.direction.startsWith("left") ||
                 point.direction.startsWith("right")
@@ -290,5 +291,14 @@
         fill: white;
         stroke: black;
         stroke-width: 1;
+    }
+
+    @media (max-width: 800px) {
+        foreignObject div {
+            border-radius: 2px;
+        }
+        .line {
+            stroke-width: 1;
+        }
     }
 </style>
