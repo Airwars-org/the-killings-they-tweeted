@@ -295,8 +295,13 @@
 
     @media (max-width: 800px) {
         foreignObject div {
-            border-radius: 2px;
+            border-radius: 5px;
         }
+        
+        video {
+            border-radius: 5px;
+        }
+
         .line {
             stroke-width: 1;
         }
