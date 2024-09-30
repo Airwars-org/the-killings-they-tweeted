@@ -49,13 +49,22 @@
     <section class="map">
         <section>
             {#if windowWidth <= 800}
-                <Legend />
-            {/if}
-            <div class="sticky">
-                <div class="intro small-heading">
+                <div class="small-heading">
                     <p>Geolocated Israeli military strike footage in Gaza</p>
                     <p class="tiny">Oct 7th – Nov 7th, 2023</p>
                 </div>
+                <Legend />
+            {/if}
+            <div class="sticky">
+                {#if windowWidth > 800}
+                    <div class="intro small-heading">
+                        <p>
+                            Geolocated Israeli military strike footage in Gaza
+                        </p>
+                        <p class="tiny">Oct 7th – Nov 7th, 2023</p>
+                    </div>
+                {/if}
+
                 <div class="panel">
                     {#if !$selected}
                         {#if windowWidth > 800}
@@ -97,6 +106,7 @@
     }
 
     .small-heading {
+        color: var(--primary-color);
         font-size: clamp(1.6rem, 1.4vw, 2rem);
     }
 
@@ -156,6 +166,7 @@
 
         .sticky {
             top: 0px;
+            padding-bottom: 20px;
         }
     }
 </style>

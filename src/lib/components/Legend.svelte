@@ -32,7 +32,7 @@
     >
         <ellipse cx="10" cy="10" rx="4" ry="4" fill="white" />
     </svg>
-    <p>Israeli military strike footage</p>
+    <p>Geolocated Israeli military strike footage</p>
 
     <!-- <svg
         width=".9rem"
@@ -102,7 +102,7 @@
             padding: 10px 0;
             border-radius: 0;
 
-            display: block;
+            /* display: block; */
         }
     }
 </style>

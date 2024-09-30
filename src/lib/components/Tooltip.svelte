@@ -14,20 +14,27 @@
 
     $: {
         if (w <= 768) {
-            boxWidth = w / 6;
-            boxHeight = w / 9;
+            boxWidth = w / 7;
+            boxHeight = w / 10;
+            if (
+                point.direction.startsWith("left") ||
+                point.direction.startsWith("right")
+            ) {
+                lineMargin = point.direction.startsWith("left") ? 1 : 9;
+            } else {
+                lineMargin = 5;
+            }
         } else {
             boxWidth = 195;
             boxHeight = 122;
-        }
-
-        if (
-            point.direction.startsWith("left") ||
-            point.direction.startsWith("right")
-        ) {
-            lineMargin = point.direction.startsWith("left") ? -4 : 9;
-        } else {
-            lineMargin = 2;
+            if (
+                point.direction.startsWith("left") ||
+                point.direction.startsWith("right")
+            ) {
+                lineMargin = point.direction.startsWith("left") ? -4 : 9;
+            } else {
+                lineMargin = 2;
+            }
         }
 
         if (point.direction.startsWith("right")) {
