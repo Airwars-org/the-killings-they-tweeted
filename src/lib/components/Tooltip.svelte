@@ -9,7 +9,8 @@
     let boxHeight = 122;
 
     let offsetX = "";
-    let lineMargin;
+    let offsetY = 0;
+    let lineMargin = 0;
 
     $: {
         if (w <= 768) {
@@ -20,12 +21,14 @@
             boxHeight = 122;
         }
 
-        lineMargin =
-            point.direction === "left" ||
-            point.direction === "left-1" ||
-            point.direction === "left-2"
-                ? -4
-                : 9;
+        if (
+            point.direction.startsWith("left") ||
+            point.direction.startsWith("right")
+        ) {
+            lineMargin = point.direction.startsWith("left") ? -4 : 9;
+        } else {
+            lineMargin = 2;
+        }
 
         if (point.direction.startsWith("right")) {
             if (point.direction === "right") {
@@ -43,6 +46,9 @@
             } else if (point.direction === "left-2") {
                 offsetX = -(boxWidth + boxHeight * 2);
             }
+        } else if (point.direction === "top") {
+            offsetX = -(boxWidth / 2);
+            offsetY = -boxHeight;
         }
     }
 
@@ -113,25 +119,26 @@
     class:selected={isSelected}
 >
     {#if point["Airwars ref code"]}
-        <!-- {#if w > 768} -->
         <line
             class="line"
             x1={point.cx - lineMargin}
             y1={point.cy - yOffset}
-            x2={point.cx + offsetX}
-            y2={point.cy - yOffset}
+            x2={point.direction === "top"
+                ? point.cx - lineMargin
+                : point.cx + offsetX}
+            y2={point.cy - yOffset + (point.direction === "top" ? offsetY : 0)}
         />
 
         <rect
             class="box"
             x={point.cx + offsetX}
-            y={point.cy - yOffset - boxHeight / 2}
+            y={point.cy - yOffset + offsetY - boxHeight / 2}
             width={boxWidth}
             height={boxHeight}
             rx="10"
             ry="10"
         />
-        <!-- {/if} -->
+
         {#if w > 768}
             <svg
                 x={markerTranslateX}
@@ -172,7 +179,7 @@
 
         <foreignObject
             x={point.cx + offsetX}
-            y={point.cy - yOffset - boxHeight / 2}
+            y={point.cy - yOffset + offsetY - boxHeight / 2}
             width={boxWidth}
             height={boxHeight}
         >

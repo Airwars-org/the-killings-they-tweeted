@@ -12,13 +12,18 @@
             Sanjana Varghese
         </p>
         <p>
-            Additional reporting: Rosie Harris-Davidson, Maia Awada, Ahmed?,
+            Additional reporting: Rosie Harris-Davidson, Maia Awada, Ahmad Aydi,
             Shihab Halep, Anna Zahn
         </p>
         <p>Lead visual designer: Nathan Walker</p>
         <p>Additional design and development: Azul De Monte, Giacomo Nanni</p>
         <p>Geolocation team: Duncan Salkovskis, Clive Vella</p>
-        <p>Geolocation volunteers:</p>
+        <p>
+            Geolocation volunteers: Siufan Adey, Claire August, Isabella
+            Crispino, Jeanne Desurmont, Tamara Keller, Joel Schülin, Flavia
+            Palladino, Avery Schmitz, Finn Steffens, Sam Storey, Fadeelah
+            Williams, Jasper Zehetgruber
+        </p>
     </div>
 </section>
 

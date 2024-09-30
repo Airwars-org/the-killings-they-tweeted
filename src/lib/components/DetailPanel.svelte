@@ -60,8 +60,8 @@
     <div bind:this={panelRef} class="panel">
         <div class="close" on:click={() => selected.set(null)}>
             <svg
-                width="24"
-                height="24"
+                width="22"
+                height="22"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +141,7 @@
         {/if}
         <div class="main">
             <!-- {selectedPoint['Airwars ref code']} -->
-            {#if selectedPoint.lat && selectedPoint.lon}
+            <!-- {#if selectedPoint.lat && selectedPoint.lon}
                 <div class="icon">
                     <svg
                         width="13"
@@ -157,7 +157,7 @@
                         />
                     </svg>
                 </div>
-            {/if}
+            {/if} -->
             <div class="metadata">
                 <!-- {#if selectedPoint["Airwars ref code"]}
                     {selectedPoint["Airwars ref code"]}
@@ -172,10 +172,19 @@
                     </div>
                 {/if}
 
-                {#if selectedPoint.Location || selectedPoint.lat || selectedPoint.lon}
+                {#if selectedPoint["Post date"]}
                     <div>
-                        <h3>Location</h3>
-                        {#if selectedPoint.Location}
+                        <h3>Date Posted</h3>
+                        <h2>
+                            {selectedPoint["Post date"]}
+                        </h2>
+                    </div>
+                {/if}
+
+                {#if selectedPoint.Location || selectedPoint.lat || selectedPoint.lon}
+                    {#if selectedPoint.Location}
+                        <div>
+                            <h3>Location</h3>
                             {#if selectedPoint.lat && selectedPoint.lon}
                                 <a
                                     class="link"
@@ -187,8 +196,13 @@
                             {:else}
                                 <h2>{selectedPoint.Location}</h2>
                             {/if}
-                        {/if}
-                        {#if selectedPoint.lat && selectedPoint.lon}
+                        </div>
+                    {/if}
+
+                    {#if selectedPoint.lat && selectedPoint.lon}
+                        <div>
+                            <h3>Coordinates</h3>
+
                             <a
                                 class="link"
                                 href="http://maps.google.com/maps?z=20&t=k&q=loc:{selectedPoint.lat},{selectedPoint.lon}&ll={selectedPoint.lat},{selectedPoint.lon}"
@@ -202,47 +216,8 @@
                                     {Number(selectedPoint.lon).toFixed(6)}
                                 </h2>
                             </a>
-                        {/if}
-                    </div>
-                {/if}
-
-                {#if selectedPoint["Post date"]}
-                    <div>
-                        <h3>Post Date</h3>
-
-                        <span class="ico">
-                            {#if selectedPoint["Footage link"]}
-                                <a
-                                    class="footage-link"
-                                    href={selectedPoint["Footage link"]}
-                                    target="_blank"
-                                >
-                                    <svg
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 38 38"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <rect
-                                            width="37.6627"
-                                            height="37.6627"
-                                            rx="18.8314"
-                                            fill="#120908"
-                                        />
-                                        <path
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
-                                            d="M23.1892 8L29.6626 14.4734L24.5965 19.5396L20.0627 20.0627L19.5396 24.5966L14.4734 29.6627L8.00002 23.1893L13.0662 18.1232L17.5999 17.6L18.1231 13.0661L23.1892 8ZM24.8016 15.02L22.6438 12.8622L12.7179 22.7881L14.8757 24.9459L24.8016 15.02Z"
-                                        />
-                                    </svg>
-                                    <h2 style="display: inline;">
-                                        {selectedPoint["Post date"]}
-                                    </h2>
-                                </a>
-                            {/if}
-                        </span>
-                    </div>
+                        </div>
+                    {/if}
                 {/if}
 
                 {#if selectedPoint["Civilians reported killed"]}
@@ -251,13 +226,97 @@
                         <h2>{selectedPoint["Civilians reported killed"]}</h2>
                     </div>
                 {/if}
+
+                {#if selectedPoint["Footage link"]}
+                    <div>
+                        <h3>Source</h3>
+                        <span class="ico">
+                            <a
+                                class="footage-link"
+                                href={selectedPoint["Footage link"]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    viewBox="0 0 38 38"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect
+                                        width="37.6627"
+                                        height="37.6627"
+                                        rx="18.8314"
+                                        fill="#120908"
+                                    />
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M23.1892 8L29.6626 14.4734L24.5965 19.5396L20.0627 20.0627L19.5396 24.5966L14.4734 29.6627L8.00002 23.1893L13.0662 18.1232L17.5999 17.6L18.1231 13.0661L23.1892 8ZM24.8016 15.02L22.6438 12.8622L12.7179 22.7881L14.8757 24.9459L24.8016 15.02Z"
+                                    />
+                                </svg>
+                                <h2 style="display: inline;">
+                                    {#if selectedPoint["Footage link"].includes("IAFsite")}
+                                        Israeli Air Force
+                                    {:else if selectedPoint["Footage link"].includes("IDF") || selectedPoint["Footage link"].includes("idfonline")}
+                                        Israel Defense Forces
+                                    {:else}
+                                        Israeli military footage
+                                    {/if}
+                                </h2>
+                            </a>
+                        </span>
+                    </div>
+                {/if}
+
+                {#if selectedPoint["External Geolocation Credit"]}
+                    <div>
+                        <h3>External geolocation</h3>
+                        <span class="ico">
+                            <a
+                                class="footage-link"
+                                href={selectedPoint[
+                                    "External Geolocation Credit"
+                                ]}
+                                target="_blank"
+                            >
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    viewBox="0 0 38 38"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect
+                                        width="37.6627"
+                                        height="37.6627"
+                                        rx="18.8314"
+                                        fill="#120908"
+                                    />
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M23.1892 8L29.6626 14.4734L24.5965 19.5396L20.0627 20.0627L19.5396 24.5966L14.4734 29.6627L8.00002 23.1893L13.0662 18.1232L17.5999 17.6L18.1231 13.0661L23.1892 8ZM24.8016 15.02L22.6438 12.8622L12.7179 22.7881L14.8757 24.9459L24.8016 15.02Z"
+                                    />
+                                </svg>
+                                <h2>
+                                    {selectedPoint[
+                                        "External Geolocation Credit"
+                                    ].replace("https://x.com/", "")}
+                                </h2>
+                            </a>
+                        </span>
+                    </div>
+                {/if}
             </div>
         </div>
+
         {#if selectedPoint["Civilians reported killed"]}
-            <button
-                ><a href={selectedPoint["Airwars link"]} target="_blank"
+            <a href={selectedPoint["Airwars link"]} target="_blank">
+                <button
                     >Full Incident report <svg
-                        width="24"
+                        width="22"
                         height="15"
                         viewBox="0 0 24 15"
                         fill="none"
@@ -270,11 +329,11 @@
                             fill="black"
                         />
                     </svg>
-                </a></button
-            >
+                </button>
+            </a>
         {/if}
         {#if selectedPoint.related && selectedPoint.related.length > 0}
-            <p class="related-text">Related Strikes</p>
+            <p class="related-text">Other strikes in footage</p>
             {#each selectedPoint.related as relatedPoint}
                 <div
                     class="related-point"
@@ -419,7 +478,7 @@
     }
 
     .link > h2 {
-        display: inline;
+        display: inline-flex;
     }
 
     .related-point {

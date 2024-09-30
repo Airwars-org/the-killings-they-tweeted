@@ -1,46 +1,40 @@
 <div class="legend">
-    <p class="explore">
-        <svg
-            class="marker"
-            width=".6rem"
-            height=".6rem"
-            viewBox="0 0 20 29"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
-                fill="white"
-            />
-            <!-- <ellipse
-                cx="9.99996"
-                cy="10.1562"
-                rx="2.17391"
-                ry="2.20788"
-                fill="white"
-            /> -->
-        </svg>
-
-        Confirmed civilian harm
-    </p>
-    <p>
-        <svg
-            class="marker"
-            width=".6rem"
-            height=".6rem"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <ellipse cx="10" cy="10" rx="4" ry="4" fill="white" />
-        </svg>
-
-        IAF Footage
-    </p>
-
     <svg
+        class="marker"
+        width=".8rem"
+        height=".8rem"
+        viewBox="0 0 20 29"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
+            fill="white"
+        />
+        <!-- <ellipse
+            cx="9.99996"
+            cy="10.1562"
+            rx="2.17391"
+            ry="2.20788"
+            fill="white"
+        /> -->
+    </svg>
+    <p class="explore">Strike footage matched with civilian harm allegation</p>
+    <svg
+        class="marker"
+        width=".8rem"
+        height=".8rem"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <ellipse cx="10" cy="10" rx="4" ry="4" fill="white" />
+    </svg>
+    <p>Israeli military strike footage</p>
+
+    <!-- <svg
         width=".9rem"
         height=".9rem"
         viewBox="0 0 17 17"
@@ -61,48 +55,54 @@
                 fill="#FC540D"
             />
         </g>
-    </svg>
+    </svg> -->
 </div>
 
 <style>
     .legend {
-        display: flex;
         align-items: center;
-        background-color: #561b02 !important;
-        font-size: 1rem;
         display: flex;
         margin: 10px 0;
         border-radius: 8px;
         width: 320px;
         height: fit-content;
-
-        align-content: center;
-        align-items: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
         gap: 5px;
+    }
+
+    .legend > svg {
+        flex: 5%;
+    }
+
+    .legend > p {
+        flex: 90%;
     }
 
     .marker * {
         fill: var(--primary-color);
+        /* fill: #8c8c8c; */
         padding: 5px;
     }
 
     p {
         color: var(--primary-color);
-        font-size: clamp(12px, 1vw, 14px);
-        padding: 5px;
+        /* color: #8c8c8c; */
+        font-size: clamp(14px, 1vw, 16px);
+        /* padding: 5px; */
         vertical-align: middle;
         margin: 0;
     }
 
     @media (max-width: 800px) {
         .legend {
-            width: 100%;
-            margin: 0;
-            padding: 10px;
+            /* width: 100%; */
+            max-width: unset;
+            margin: 10px;
+            padding: 10px 0;
             border-radius: 0;
 
             display: block;
-            background-color: black !important;
         }
     }
 </style>

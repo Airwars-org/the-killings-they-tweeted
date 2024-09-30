@@ -5,6 +5,7 @@
     import { csv } from "d3";
     import { onMount } from "svelte";
     import SmallMap from "./SmallMap.svelte";
+    import { selected } from "$lib/stores/selected";
 
     let data = [];
     let mapContainer;
@@ -46,18 +47,20 @@
     <p>Loading...</p>
 {:else}
     <section class="map">
-        <p>
-            Geolocated Israeli military strike footage in Gaza October
-            7th-November 7th, 2023.
-        </p>
-        <section class="map">
+        <section>
             {#if windowWidth <= 800}
                 <Legend />
             {/if}
             <div class="sticky">
+                <div class="intro small-heading">
+                    <p>Geolocated Israeli military strike footage in Gaza</p>
+                    <p class="tiny">Oct 7th – Nov 7th, 2023</p>
+                </div>
                 <div class="panel">
-                    {#if windowWidth > 800}
-                        <Legend />
+                    {#if !$selected}
+                        {#if windowWidth > 800}
+                            <Legend />
+                        {/if}
                     {/if}
                     <DetailPanel />
                 </div>
@@ -82,15 +85,32 @@
 
 <style>
     .map {
-        margin-top: 20px;
         position: relative;
     }
 
-    .map p {
-        max-width: 640px;
+    .intro {
+        /* font-size: 1.8rem; */
+        color: #8c8c8c;
         color: var(--primary-color);
-        color: white;
-        opacity: 0.7;
+        width: 100%;
+        position: absolute;
+    }
+
+    .small-heading {
+        font-size: clamp(1.6rem, 1.4vw, 2rem);
+    }
+
+    .tiny {
+        font-size: clamp(1rem, 1vw, 1rem);
+    }
+
+    .intro p {
+        max-width: 360px;
+        margin-bottom: 0;
+        margin-top: 0;
+        /* opacity: 0.6; */
+        /* font-size: clamp(14px, 1vw, 16px); */
+        /* text-align: right; */
     }
 
     .mapContainer {
@@ -104,6 +124,7 @@
         top: 10px;
         height: 100vh;
         pointer-events: none;
+        padding-bottom: 100px;
     }
 
     .panel {
@@ -115,7 +136,7 @@
     .small {
         position: absolute;
         z-index: -1;
-        bottom: 10px;
+        bottom: 100px;
         margin: 10px;
     }
 
