@@ -18,16 +18,28 @@
     let pointsArray = [];
 
     $: if (gaza.length === 0) {
-        fetch("boundary.geojson")
-            .then((response) => response.json())
+        fetch("boundary.json")
+             .then((response) => response.json())
             .then((boundaryData) => {
-                boundary = boundaryData.features;
+                boundary = topojson.feature(
+                    boundaryData,
+                    boundaryData.objects.boundary,
+                ).features;
             });
 
-        fetch("streets.geojson")
+        // fetch("streets.geojson")
+        //     .then((response) => response.json())
+        //     .then((gazaData) => {
+        //         gaza = gazaData.features;
+        //     });
+
+        fetch("streets.json")
             .then((response) => response.json())
             .then((gazaData) => {
-                gaza = gazaData.features;
+                gaza = topojson.feature(
+                    gazaData,
+                    gazaData.objects.streets,
+                ).features;
             });
 
         fetch("buildings2.json")
