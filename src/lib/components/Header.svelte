@@ -97,6 +97,7 @@
         section {
             position: unset;
             margin-bottom: 50px;
+            padding-bottom: 0;
         }
     }
 </style>
