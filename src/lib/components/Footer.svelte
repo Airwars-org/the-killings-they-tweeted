@@ -19,10 +19,10 @@
         <p>Additional design and development: Azul De Monte, Giacomo Nanni</p>
         <p>Geolocation team: Duncan Salkovskis, Clive Vella</p>
         <p>
-            Geolocation volunteers: Siufan Adey, Claire August, Isabella
-            Crispino, Jeanne Desurmont, Tamara Keller, Joel Schülin, Flavia
-            Palladino, Avery Schmitz, Finn Steffens, Sam Storey, Fadeelah
-            Williams, Jasper Zehetgruber
+            Geolocation volunteers: Siufan Adey, Claire August, Fine Bieler,
+            Isabella Crispino, Jeanne Desurmont, Faye Harvey, Tamara Keller,
+            Joel Schülin, Flavia Palladino, Avery Schmitz, Finn Steffens, Sam
+            Storey, Fadeelah Williams, Jasper Zehetgruber
         </p>
     </div>
 </section>
