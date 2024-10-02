@@ -79,6 +79,8 @@
 
     .small-heading {
         font-size: clamp(1.6rem, 1.4vw, 2rem);
+        line-height: clamp(1.6rem, 1.4vw, 2rem);
+        margin: .5rem 0 2rem 0;
     }
 
     .tiny {

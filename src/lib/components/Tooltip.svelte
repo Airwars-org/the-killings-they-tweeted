@@ -163,7 +163,7 @@
                     d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
                     fill="white"
                 />
-                <circle cx="10" cy="10.1562" r="5" fill="black" stroke="none" />
+                <circle cx="10" cy="10.1562" fill="black" stroke="none" />
             </svg>
         {:else}
             <svg
@@ -181,7 +181,7 @@
                     d="M20 0H0V15.6522L10 28.2609L20 15.6522V0ZM10 15.8967C13.1216 15.8967 15.6522 13.3266 15.6522 10.1562C15.6522 6.98586 13.1216 4.41576 10 4.41576C6.87839 4.41576 4.34783 6.98586 4.34783 10.1562C4.34783 13.3266 6.87839 15.8967 10 15.8967Z"
                     fill="white"
                 />
-                <circle cx="10" cy="10.1562" r="5" fill="black" stroke="none" />
+                <circle cx="10" cy="10.1562" fill="black" stroke="none" />
             </svg>
         {/if}
 
@@ -207,13 +207,11 @@
             </div>
         </foreignObject>
     {:else}
-        <ellipse
+        <circle
             class="secondary"
             id={point["Unmatched ID"]}
             cx={point.cx}
             cy={point.cy}
-            rx="4"
-            ry="4"
         />
     {/if}
 </g>
@@ -226,7 +224,8 @@
 
     foreignObject,
     svg,
-    ellipse {
+    ellipse,
+    circle {
         pointer-events: auto;
         cursor: pointer;
     }
@@ -293,17 +292,26 @@
         stroke-width: 1;
     }
 
+    circle {
+        r: 5;
+    }
+
     @media (max-width: 800px) {
         foreignObject div {
             border-radius: 5px;
         }
-        
+
         video {
             border-radius: 5px;
         }
 
         .line {
             stroke-width: 1;
+        }
+
+        circle,
+        ellipse {
+            r: 3;
         }
     }
 </style>

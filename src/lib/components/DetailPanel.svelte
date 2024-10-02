@@ -564,6 +564,7 @@
         .close {
             display: block;
             width: 100%;
+            padding: 1rem 0;
         }
 
         button {

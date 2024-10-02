@@ -168,5 +168,9 @@
             top: 0px;
             padding-bottom: 20px;
         }
+
+        .small {
+            display: none;
+        }
     }
 </style>
