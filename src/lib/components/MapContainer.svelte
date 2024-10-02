@@ -43,10 +43,10 @@
     });
 </script>
 
-{#if data.length === 0}
-    <p>Loading...</p>
-{:else}
-    <section class="map">
+<section class="map">
+    {#if data.length === 0}
+        <p class="loading">Loading...</p>
+    {:else}
         <section>
             {#if windowWidth <= 800}
                 <div class="small-heading">
@@ -89,12 +89,17 @@
                 <Map {data} />
             </div>
         </section>
-    </section>
-{/if}
+    {/if}
+</section>
 
 <style>
     .map {
         position: relative;
+    }
+
+    .loading {
+        min-height: 100vh;
+        color: var(--primary-color);
     }
 
     .intro {
