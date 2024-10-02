@@ -157,11 +157,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@petamoriken/float16@^3.4.7":
-  version "3.8.7"
-  resolved "https://registry.npmjs.org/@petamoriken/float16/-/float16-3.8.7.tgz"
-  integrity sha512-/Ri4xDDpe12NT6Ex/DRgHzLlobiQXEW/hmG08w1wj/YU7hLemk97c+zHQFp0iZQ9r7YqgLEXZR2sls4HxBf9NA==
-
 "@polka/url@^1.0.0-next.24":
   version "1.0.0-next.25"
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.25.tgz"
@@ -677,20 +672,6 @@ fsevents@~2.3.2, fsevents@~2.3.3:
   resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
-geotiff@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.npmjs.org/geotiff/-/geotiff-2.1.3.tgz"
-  integrity sha512-PT6uoF5a1+kbC3tHmZSUsLHBp2QJlHasxxxxPW47QIY1VBKpFB+FcDvX+MxER6UzgLQZ0xDzJ9s48B9JbOCTqA==
-  dependencies:
-    "@petamoriken/float16" "^3.4.7"
-    lerc "^3.0.0"
-    pako "^2.0.4"
-    parse-headers "^2.0.2"
-    quick-lru "^6.1.1"
-    web-worker "^1.2.0"
-    xml-utils "^1.0.2"
-    zstddec "^0.1.0"
-
 globalyzer@0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/globalyzer/-/globalyzer-0.1.0.tgz"
@@ -730,11 +711,6 @@ kleur@^4.1.5:
   resolved "https://registry.npmjs.org/kleur/-/kleur-4.1.5.tgz"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
-lerc@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/lerc/-/lerc-3.0.0.tgz"
-  integrity sha512-Rm4J/WaHhRa93nCN2mwWDZFoRVF18G1f47C+kvQWyHGEZxFpTUi73p7lMVSAndyxGt6lJ2/CFbOcf9ra5p8aww==
-
 locate-character@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/locate-character/-/locate-character-3.0.0.tgz"
@@ -772,16 +748,6 @@ nanoid@^3.3.7:
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz"
   integrity sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==
 
-pako@^2.0.4:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/pako/-/pako-2.1.0.tgz"
-  integrity sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==
-
-parse-headers@^2.0.2:
-  version "2.0.5"
-  resolved "https://registry.npmjs.org/parse-headers/-/parse-headers-2.0.5.tgz"
-  integrity sha512-ft3iAoLOB/MlwbNXgzy43SWGP6sQki2jQvAyBg/zDFAgr9bfNWZIUj42Kw2eJIl8kEi4PbgE6U1Zau/HwI75HA==
-
 periscopic@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/periscopic/-/periscopic-3.1.0.tgz"
@@ -804,11 +770,6 @@ postcss@^8.4.41:
     nanoid "^3.3.7"
     picocolors "^1.0.1"
     source-map-js "^1.2.0"
-
-quick-lru@^6.1.1:
-  version "6.1.2"
-  resolved "https://registry.npmjs.org/quick-lru/-/quick-lru-6.1.2.tgz"
-  integrity sha512-AAFUA5O1d83pIHEhJwWCq/RQcRukCkn/NSm2QsTEMle5f2hP0ChI2+3Xb051PZCkLryI/Ir1MVKviT2FIloaTQ==
 
 robust-predicates@^3.0.2:
   version "3.0.2"
@@ -909,20 +870,12 @@ tiny-glob@^0.2.9:
     globalyzer "0.1.0"
     globrex "^0.1.2"
 
-topojson-client@3, topojson-client@^3.1.0:
+topojson-client@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/topojson-client/-/topojson-client-3.1.0.tgz"
   integrity sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==
   dependencies:
     commander "2"
-
-topojson-simplify@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.npmjs.org/topojson-simplify/-/topojson-simplify-3.0.3.tgz"
-  integrity sha512-V+pBjLVzSQ3+hSOxBiV01OVXgFiCmMO8ia3huxKEyIMTC1ApQHBcdXdOqcQ6U2JJJD31TZduwY6KyF15R8sUgg==
-  dependencies:
-    commander "2"
-    topojson-client "3"
 
 totalist@^3.0.0:
   version "3.0.1"
@@ -944,18 +897,3 @@ vitefu@^0.2.5:
   version "0.2.5"
   resolved "https://registry.npmjs.org/vitefu/-/vitefu-0.2.5.tgz"
   integrity sha512-SgHtMLoqaeeGnd2evZ849ZbACbnwQCIwRH57t18FxcXoZop0uQu0uzlIhJBlF/eWVzuce0sHeqPcDo+evVcg8Q==
-
-web-worker@^1.2.0:
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/web-worker/-/web-worker-1.3.0.tgz"
-  integrity sha512-BSR9wyRsy/KOValMgd5kMyr3JzpdeoR9KVId8u5GVlTTAtNChlsE4yTxeY7zMdNSyOmoKBv8NH2qeRY9Tg+IaA==
-
-xml-utils@^1.0.2:
-  version "1.10.1"
-  resolved "https://registry.npmjs.org/xml-utils/-/xml-utils-1.10.1.tgz"
-  integrity sha512-Dn6vJ1Z9v1tepSjvnCpwk5QqwIPcEFKdgnjqfYOABv1ngSofuAhtlugcUC3ehS1OHdgDWSG6C5mvj+Qm15udTQ==
-
-zstddec@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/zstddec/-/zstddec-0.1.0.tgz"
-  integrity sha512-w2NTI8+3l3eeltKAdK8QpiLo/flRAr2p8AGeakfMZOXBxOg9HIu4LVDxBi81sYgVhFhdJjv1OrB5ssI8uFPoLg==
