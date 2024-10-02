@@ -1,40 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <link
+      rel="preload"
+      href="%sveltekit.assets%/fonts/AtlasGrotesk-Regular.otf"
+      as="font"
+      type="font/opentype"
+      crossorigin
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-	<link rel="preload" href="%sveltekit.assets%/fonts/AtlasGrotesk-Regular.otf" as="font" type="font/opentype"
-		crossorigin>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Primary Meta Tags -->
+    <title>The Killings They Tweeted</title>
+    <meta name="title" content="The Killings They Tweeted" />
+    <meta
+      name="description"
+      content="Explore the intricate landscape of airstrikes in the Middle East and unveil the hidden realities behind these strategic military maneuvers. Acquire in-depth knowledge about the complexities of airstrikes in this particular region, distinguishing between verifiable truths and common misconceptions, all the while illuminating the current state of affairs."
+    />
 
-	<!-- Primary Meta Tags -->
-	<title>The Killings They Tweeted</title>
-	<meta name="title" content="The Killings They Tweeted" />
-	<meta name="description"
-		content="Explore the intricate landscape of airstrikes in the Middle East and unveil the hidden realities behind these strategic military maneuvers. Acquire in-depth knowledge about the complexities of airstrikes in this particular region, distinguishing between verifiable truths and common misconceptions, all the while illuminating the current state of affairs." />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://idf-tweets-gaza.airwars.org/" />
+    <meta property="og:title" content="The Killings They Tweeted" />
+    <meta
+      property="og:description"
+      content="Explore the intricate landscape of airstrikes in the Middle East and unveil the hidden realities behind these strategic military maneuvers. Acquire in-depth knowledge about the complexities of airstrikes in this particular region, distinguishing between verifiable truths and common misconceptions, all the while illuminating the current state of affairs."
+    />
+    <meta
+      property="og:image"
+      content="%sveltekit.assets%/tweets-og-image.png"
+    />
 
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://idf-tweets-gaza.airwars.org/" />
-	<meta property="og:title" content="The Killings They Tweeted" />
-	<meta property="og:description"
-		content="Explore the intricate landscape of airstrikes in the Middle East and unveil the hidden realities behind these strategic military maneuvers. Acquire in-depth knowledge about the complexities of airstrikes in this particular region, distinguishing between verifiable truths and common misconceptions, all the while illuminating the current state of affairs." />
-	<meta property="og:image" content="%sveltekit.assets%/cover.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="http://idf-tweets-gaza.airwars.org/"
+    />
+    <meta property="twitter:title" content="The Killings They Tweeted" />
+    <meta
+      property="twitter:description"
+      content="Explore the intricate landscape of airstrikes in the Middle East and unveil the hidden realities behind these strategic military maneuvers. Acquire in-depth knowledge about the complexities of airstrikes in this particular region, distinguishing between verifiable truths and common misconceptions, all the while illuminating the current state of affairs."
+    />
+    <meta
+      property="twitter:image"
+      content="%sveltekit.assets%/tweets-og-image.png"
+    />
 
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content="http://idf-tweets-gaza.airwars.org/" />
-	<meta property="twitter:title" content="The Killings They Tweeted" />
-	<meta property="twitter:description"
-		content="Explore the intricate landscape of airstrikes in the Middle East and unveil the hidden realities behind these strategic military maneuvers. Acquire in-depth knowledge about the complexities of airstrikes in this particular region, distinguishing between verifiable truths and common misconceptions, all the while illuminating the current state of affairs." />
-	<meta property="twitter:image" content="%sveltekit.assets%/cover.png" />
+    %sveltekit.head%
+  </head>
 
-	%sveltekit.head%
-</head>
-
-<body data-sveltekit-preload-data="hover">
-	<div style="display: contents">%sveltekit.body%</div>
-</body>
-
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>
