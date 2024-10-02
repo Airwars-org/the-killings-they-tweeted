@@ -258,7 +258,8 @@
     }
 
     .selected path,
-    .selected ellipse {
+    .selected ellipse,
+    .selected circle {
         fill: var(--primary-color);
     }
 
