@@ -222,6 +222,7 @@
         <circle
             class="secondary"
             id={point["Unmatched ID"]}
+            r={w <= 768 ? 2.5 : 5}
             cx={point.cx}
             cy={point.cy}
         />
@@ -309,10 +310,6 @@
         stroke-width: 1;
     }
 
-    circle {
-        r: 5;
-    }
-
     @media (max-width: 800px) {
         foreignObject div {
             border-radius: 5px;
@@ -328,7 +325,7 @@
 
         circle,
         ellipse {
-            r: 3;
+            r: 3 !important;
         }
     }
 </style>
