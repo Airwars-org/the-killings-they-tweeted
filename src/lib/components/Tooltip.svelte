@@ -56,7 +56,7 @@
             }
         } else if (point.direction === "top") {
             offsetX = -(boxWidth / 2);
-            offsetY = -boxHeight;
+            offsetY = -boxHeight / 1.3;
         }
     }
 
