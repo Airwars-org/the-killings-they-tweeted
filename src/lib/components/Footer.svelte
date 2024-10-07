@@ -2,8 +2,8 @@
     <div>
         <p>
             As with many Airwars projects, this investigation built on the work
-            of dozens of staff and volunteers across the organisation and from
-            outside. Among those that helped build this investigation include:
+            of dozens of staff and volunteers across the organisation. Among
+            those that helped build this investigation include:
         </p>
     </div>
     <div>

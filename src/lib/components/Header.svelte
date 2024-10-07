@@ -15,21 +15,20 @@
     </div>
     <div>
         <p>
-            In the largest public analysis of military strike footage, Airwars,
-            in collaboration with Sky News, reviewed hundreds of clips of
-            strikes in Gaza released on social media by the Israeli military in
-            the first month of the war. By geolocating the footage and matching
-            it with Palestinian reports, we identified 17 strikes in which
-            civilians were harmed that the Israeli military itself published
-            footage of. In these strikes alone, more than 400 Palestinian
-            civilians were reported killed.
+            In the largest public analysis of Israeli military strike footage,
+            Airwars, in collaboration with Sky News, reviewed hundreds of clips
+            of strikes in Gaza posted on official military social media accounts
+            in the first month of the war. Despite the grainy videos published
+            with few details on targets or locations, Airwars matched 17 strikes
+            to specific geo-coordinates where our researchers had tracked
+            Palestinians killed or injured. In these strikes alone, more than
+            400 civilians were reported killed.
         </p>
 
         <p>
-            The video above explains the investigation’s findings, while the
-            interactive map below features all strike footage we geolocated from
-            the first month of the war, including those matched to the Airwars
-            civilian harm archive.
+            The video above explains our findings in detail, while the
+            interactive map below features all strike footage geolocated as well
+            as those cases matched to the Airwars civilian harm archive.
         </p>
     </div>
 </section>
