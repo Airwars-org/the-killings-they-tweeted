@@ -9,7 +9,7 @@
         <p>
             By Rowena De Silva, Nikolaj Houmann Mortensen, Joe Dyke, Sanjana
             Varghese, Nathan Walker, Rosie Harris-Davidson, Maia Awada, Azul De
-            Monte, Giacomo Nanni, Ahmad Aydi
+            Monte, Giacomo Nanni
         </p>
         <p class="tiny">October 9, 2024</p>
     </div>
