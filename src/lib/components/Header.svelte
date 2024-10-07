@@ -11,7 +11,7 @@
             Varghese, Nathan Walker, Rosie Harris-Davidson, Maia Awada, Azul De
             Monte, Giacomo Nanni, Ahmad Aydi
         </p>
-        <p class="tiny">October 5, 2024</p>
+        <p class="tiny">October 9, 2024</p>
     </div>
     <div>
         <p>
