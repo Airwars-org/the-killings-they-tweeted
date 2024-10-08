@@ -21,7 +21,7 @@
         <p>
             Geolocation volunteers: Siufan Adey, Claire August, Fine Bieler,
             Isabella Crispino, Jeanne Desurmont, Faye Harvey, Tamara Keller,
-            Joel Schülin, Flavia Palladino, Avery Schmitz, Finn Steffens, Sam
+            Flavia Palladino, Joel Schülin, Avery Schmitz, Finn Steffens, Sam
             Storey, Fadeelah Williams, Jasper Zehetgruber
         </p>
     </div>
