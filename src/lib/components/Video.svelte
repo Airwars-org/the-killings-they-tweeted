@@ -14,8 +14,8 @@
 <style>
     .video iframe {
         width: 100%;
-        height: 75vh;
-        max-height: 800px;
+        height: 85vh;
+        max-height: 1200px;
         object-fit: cover;
     }
 
