@@ -8,7 +8,7 @@
         <p class="small-heading">An Airwars investigation</p>
         <p>
             By Rowena De Silva, Nikolaj Houmann Mortensen, Joe Dyke, Sanjana
-            Varghese, Nathan Walker, Rosie Harris-Davidson, Maia Awada, Azul De
+            Varghese, Nathan Walker, Rosie Harris-Davison, Maia Awada, Azul De
             Monte, Giacomo Nanni
         </p>
         <p class="tiny">October 9, 2024</p>

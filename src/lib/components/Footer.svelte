@@ -12,7 +12,7 @@
             Sanjana Varghese
         </p>
         <p>
-            Additional reporting: Rosie Harris-Davidson, Maia Awada, Ahmad Aydi,
+            Additional reporting: Rosie Harris-Davison, Maia Awada, Ahmad Aydi,
             Shihab Halep, Anna Zahn
         </p>
         <p>Lead visual designer: Nathan Walker</p>
