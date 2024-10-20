@@ -9,7 +9,7 @@
         <p>
             By Rowena De Silva, Nikolaj Houmann Mortensen, Joe Dyke, Sanjana
             Varghese, Nathan Walker, Rosie Harris-Davison, Maia Awada, Azul De
-            Monte, Giacomo Nanni
+            Monte, Giacomo Nanni, Mohammed Shatat
         </p>
         <p class="tiny">October 9, 2024</p>
     </div>
@@ -17,12 +17,13 @@
         <p>
             In the largest public analysis of Israeli military strike footage,
             Airwars, in collaboration with Sky News, reviewed hundreds of clips
-            of strikes in Gaza posted on official military social media accounts
-            in the first month of the war. Despite the grainy videos published
-            with few details on targets or locations, Airwars matched 17 strikes
-            to specific geo-coordinates where our researchers had tracked
-            Palestinians killed or injured. In these strikes alone, more than
-            400 civilians were reported killed.
+            of strikes the IDF said were targeting Hamas and other militant
+            groups in Gaza that were posted on official military social media
+            accounts in the first month of the war. Despite the grainy videos
+            published with few details on targets or locations, Airwars matched
+            17 strikes to specific geo-coordinates where our researchers had
+            tracked Palestinians killed or injured. In these strikes alone, more
+            than 400 civilians were reported killed.
         </p>
 
         <p>

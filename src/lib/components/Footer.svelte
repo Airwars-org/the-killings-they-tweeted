@@ -13,7 +13,7 @@
         </p>
         <p>
             Additional reporting: Rosie Harris-Davison, Maia Awada, Ahmad Aydi,
-            Shihab Halep, Anna Zahn
+            Shihab Halep, Anna Zahn, Mohammed Shatat
         </p>
         <p>Lead visual designer: Nathan Walker</p>
         <p>Additional design and development: Azul De Monte, Giacomo Nanni</p>
